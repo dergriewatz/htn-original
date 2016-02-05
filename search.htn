@@ -2,19 +2,28 @@
 
 // nie fertig geworden!
 
-define('IN_HTN',1);
-$FILE_REQUIRES_PC=FALSE;
+define('IN_HTN', 1);
+$FILE_REQUIRES_PC = false;
 include('ingame.php');
 
-$action=$_REQUEST['page'];
-if($action=='') $action=$_REQUEST['mode'];
-if($action=='') $action=$_REQUEST['action'];
-if($action=='') $action=$_REQUEST['a'];
-if($action=='') $action=$_REQUEST['m'];
+$action = $_REQUEST['page'];
+if ($action == '') {
+    $action = $_REQUEST['mode'];
+}
+if ($action == '') {
+    $action = $_REQUEST['action'];
+}
+if ($action == '') {
+    $action = $_REQUEST['a'];
+}
+if ($action == '') {
+    $action = $_REQUEST['m'];
+}
 
-function showform() {
-global $sid;
-echo '<div id="search-form">
+function showform()
+{
+    global $sid;
+    echo '<div id="search-form">
 <h3>HackTheNet-Suche</h3>
 <!--
 <h4>Listen</h4>
@@ -156,10 +165,10 @@ echo '<div id="search-form">
 </div>';
 }
 
-switch($action) {
+switch ($action) {
 
-case 'form': // ----------------------------------- FORM --------------------------------
-$javascript='<script type="text/javascript">
+    case 'form': // ----------------------------------- FORM --------------------------------
+        $javascript = '<script type="text/javascript">
 function showpan(obj) {
 var pan=getLay(\'search-form-\'+obj.value);
 getLay(\'search-form-user\').style.display=\'none\';
@@ -169,18 +178,18 @@ pan.style.display=\'block\';
 }
 </script>
 ';
-createlayout_top('HackTheNet - Suche');
-echo '<div class="content" id="search">'."\n";
-echo '<h2>Suche</h2>'."\n";
-showform();
-echo '</div>'."\n";
-createlayout_bottom();
-break;
+        createlayout_top('HackTheNet - Suche');
+        echo '<div class="content" id="search">'."\n";
+        echo '<h2>Suche</h2>'."\n";
+        showform();
+        echo '</div>'."\n";
+        createlayout_bottom();
+        break;
 
 
-case 'exec':  // ----------------------------------- EXEC --------------------------------
+    case 'exec':  // ----------------------------------- EXEC --------------------------------
 
-break;
+        break;
 
 }
 
