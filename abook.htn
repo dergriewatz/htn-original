@@ -83,10 +83,10 @@ basicfooter();
 break;
 
 case 'add': //------------------------- ADD -------------------------------
-$ix=(int)$_REQUEST[user];
-if($ix==0) $u=getuser($_REQUEST[user],'name'); else $u=getuser($ix);
+$ix=(int)$_REQUEST['user'];
+if($ix==0) $u=getuser($_REQUEST['user'],'name'); else $u=getuser($ix);
 if($u!==false) {
-$g=(int)$_REQUEST[group];
+$g=(int)$_REQUEST['group'];
 if($g<1 || $g>4) $g=1;
 $r=db_query('SELECT * FROM abooks WHERE user=\''.$usrid.'\'');
 
@@ -102,7 +102,7 @@ settype($c,'array');
 foreach($a as $item) {
   $u=getuser($item);
   if($u!==false) {
-    $name=$u[name];
+    $name=$u['name'];
     $c[$name]=$item;
   }
 }
@@ -119,7 +119,7 @@ break;
 case 'admin': //------------------------- ADMIN -------------------------------
 createlayout_top('HackTheNet - Adressbuch');
 
-if($_REQUEST[saved]==1) $xxx='<div class="ok"><h3>OK</h3><p>Die &Auml;nderungen wurden &uuml;bernommen!</p></div><br />'."\n";
+if($_REQUEST['saved']==1) $xxx='<div class="ok"><h3>OK</h3><p>Die &Auml;nderungen wurden &uuml;bernommen!</p></div><br />'."\n";
 echo '<div id="abook-administration" class="content">
 <h2>Adressbuch</h2>
 <h3>Adressbuch verwalten</h3>'.$xxx.'
@@ -165,8 +165,8 @@ break;
 
 case 'saveadmin': //------------------------- SAVE ADMIN -------------------------------
 
-  $b=explode(';',$usr[abook]);
-  $g=(int)$_REQUEST[group];
+  $b=explode(';',$usr['abook']);
+  $g=(int)$_REQUEST['group'];
   if($g>4 OR $g<1) $g=1;
   $b=mysql_fetch_assoc(db_query('SELECT * FROM abooks WHERE user=\''.mysql_escape_string($usrid).'\''));
 

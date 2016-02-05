@@ -24,7 +24,7 @@ if(file_exists($imgfile)!=true) {
   $ecnt=count(explode(' ',$option));
   
   #$hFont=imageloadfont('data/04b25.gdf');
-  #$usr[name]=str_pad($usr[name].' ',40,'x');
+  #$usr['name']=str_pad($usr['name'].' ',40,'x');
   $w[0]=imagefontwidth(3)*strlen($usr['name']);
   if(stristr($option,'points')!=false) $w[1]=imagefontwidth(2)*strlen($usr['points'].' Punkte');
   if(stristr($option,'ranking')!=false) $w[2]=imagefontwidth(2)*strlen('Platz '.$usr['rank']);

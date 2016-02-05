@@ -401,7 +401,7 @@ if($found==true) {
 }
 
 processupgrades($pc);
-if($pc[blocked]>time()) { exit; }
+if($pc['blocked']>time()) { exit; }
 
 createlayout_top('HackTheNet - Dein Computer');
 echo '<div class="content" id="computer">'."\n";
@@ -748,7 +748,7 @@ $a=explode(',',$usr['pcs']);
 rem_emptys($a);
 for($i=0;$i<count($a);$i++) {
 $x=GetPC($a[$i]);
-$x[name]=htmlspecialchars($x[name]);
+$x['name']=htmlspecialchars($x['name']);
 echo '<tr>
 <td>10.47.'.$x['ip'].'</td>
 <td>'.$x['name'].'</td>
@@ -774,7 +774,7 @@ if(trim($_POST['pc'.$a[$i]])!='') {
   $n=trim($_POST['pc'.$a[$i]]);
   if(strlen($n)>1 && strlen($n)<=30) {
     $xpc=GetPC($a[$i]);
-    $xpc[name]=$n;
+    $xpc['name']=$n;
     savepc($a[$i],$xpc);
   }
 }
@@ -932,12 +932,12 @@ if($usr['tcode']!=$code || file_exists($fn)!=true) { simple_message('&Uuml;berwe
 $dat=explode('|',file_get($fn));
 @unlink($fn);
 if(count($dat)==4) {
-$pc[credits]-=$dat[2];
+$pc['credits']-=$dat[2];
 #print_r($dat);
 db_query('UPDATE pcs SET credits=\''.mysql_escape_string($pc['credits']).'\' WHERE id='.mysql_escape_string($pcid));
 if($dat[0]=='user') {
   $recip=getpc($dat[1]);
-  $recip[credits]+=$dat[3];
+  $recip['credits']+=$dat[3];
   db_query('UPDATE pcs SET credits=credits+'.mysql_escape_string($dat[3]).' WHERE id=\''.mysql_escape_string($recip['id']).'\';');
   $s='[usr='.$usrid.']'.$usr['name'].'[/usr] hat dir '.$dat[2].' Credits auf deinen PC 10.47.'.$recip['ip'].' ('.$recip['name'].') &uuml;berwiesen.';
   if($dat[2]!=$dat[3]) $s.=' Abz&uuml;glich der Geb&uuml;hren hast du '.$dat[3].' Credits erhalten!';
@@ -961,7 +961,7 @@ $subnet=$_REQUEST['subnet'];
 if($subnet=='') $subnet=subnetfromip($pc['ip']);
 if((int)$subnet==0) {
     $tmp=getcountry('id',$subnet);
-    $subnet=$tmp[subnet];
+    $subnet=$tmp['subnet'];
 }
 
 if($subnet=='') { no_('gs_1'); exit; }
@@ -994,7 +994,7 @@ foreach($countrys as $ctry)
    $options.='<option value="'.$ctry['subnet'].'">10.47.'.$ctry['subnet'].'.x - '.$ctry['name'].'</option>';
 }
 
-$listpage=$_REQUEST[listpage];
+$listpage=$_REQUEST['listpage'];
 if($listpage<1 || $listpage>4) $listpage=1;
 $r=db_query('SELECT pcs.ip AS pcs_ip, pcs.name AS pcs_name, pcs.points AS pcs_points, users.id AS users_id, users.name AS users_name, users.points AS users_points, clusters.id AS clusters_id, clusters.name AS clusters_name FROM (clusters RIGHT JOIN users ON clusters.id = users.cluster) RIGHT JOIN pcs ON users.id = pcs.owner WHERE country LIKE \''.mysql_escape_string($c['id']).'\' ORDER BY pcs.id ASC;');
 $anz=mysql_num_rows($r);

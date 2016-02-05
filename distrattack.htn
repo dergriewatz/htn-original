@@ -285,7 +285,7 @@ if(isset($a['id'])==true && $a['cluster']==$clusterid) {
         if($_POST['pc'.$xpc['id']]!=1) continue;
         $creds=$xpc['credits'];
         if(isavailh('da',$xpc)!=true || $xpc['owner']!=$usrid || $creds<1000) continue;
-        $result=db_query('SELECT relative FROM da_participants WHERE relative=\''.mysql_escape_string($a[id]).'\' AND pc=\''.mysql_escape_string($xpc['id']).'\';');
+        $result=db_query('SELECT relative FROM da_participants WHERE relative=\''.mysql_escape_string($a['id']).'\' AND pc=\''.mysql_escape_string($xpc['id']).'\';');
         if(mysql_num_rows($result)>0) continue;
         $creds-=1000;
         db_query('UPDATE pcs SET credits=\''.mysql_escape_string($creds).'\' WHERE id=\''.mysql_escape_string($xpc['id']).'\';');
@@ -423,9 +423,9 @@ if(isset($a['id'])==true && $a['cluster']==$clusterid) {
     $attack=0;
     while($b=mysql_fetch_assoc($result)) {
       $p=getpc($b['pc']);
-      $attack+=$p[cpu] + $p[ips]*2 + $p[mk]*2 + $p[sdk] + $p[lan]/2 + mt_rand(0,5);
+      $attack+=$p['cpu'] + $p['ips']*2 + $p['mk']*2 + $p['sdk'] + $p['lan']/2 + mt_rand(0,5);
     }
-    $remote=getpc($a[target]);
+    $remote=getpc($a['target']);
 
 
 $owner=@getuser($remote['owner']);
@@ -442,21 +442,21 @@ if( count(explode(',',$owner['pcs'])) < 2 && (
         
 }
 
-    $defend=$remote[cpu]*count($item) + $remote[fw]*2 + $remote[ids] + $remote[av]/2 + mt_rand(0,8*count($item));
+    $defend=$remote['cpu']*count($item) + $remote['fw']*2 + $remote['ids'] + $remote['av']/2 + mt_rand(0,8*count($item));
     $dif=$attack-$defend;
     #echo 'attack='.$attack.' defend='.$defend.' dif='.$dif.'<br />';
 
 ############
 
       $nx=false;
-      $lv=$remote[$a[item]];
-      if($a[item]=='cpu') {
+      $lv=$remote[$a['item']];
+      if($a['item']=='cpu') {
         $lv-=$dif/550;
         $lv=ceil($lv);
 
         if($lv>0) {
           $lv=$cpu_levels[$lv];
-        } elseif($remote[cpu]==$cpu_levels[0]) { $lv=$cpu_levels[0]; $nx=true; } else $lv=$cpu_levels[0];
+        } elseif($remote['cpu']==$cpu_levels[0]) { $lv=$cpu_levels[0]; $nx=true; } else $lv=$cpu_levels[0];
       } else {
         #echo 'dif='.$dif.' lv='.$lv.'<br />';
         $lv-=$dif/650;
@@ -465,12 +465,12 @@ if( count(explode(',',$owner['pcs'])) < 2 && (
           $in=floor($lv);
           $tmp=$lv-$in;
           if($tmp<0.5) $lv=$in; else $lv=$in+0.5;
-        } elseif($remote[$a[item]]==1) { $lv=1; $nx=true; } else $lv=1;
+        } elseif($remote[$a['item']]==1) { $lv=1; $nx=true; } else $lv=1;
       }
 
 ############
 
-    if($dif<10 || $remote[$a['item']]==$lv || ($a[item]=='cpu' && $remote[$a['item']]==array_search($lv,$cpu_levels)) ) {
+    if($dif<10 || $remote[$a['item']]==$lv || ($a['item']=='cpu' && $remote[$a['item']]==array_search($lv,$cpu_levels)) ) {
       echo '<div class="error"><h3>Fehlgeschlagen!</h3><p>Der Angriff war zu schwach und konnte so abgewehrt werden!</p></div><br />';
       $owner=getuser($remote['owner']);
       $msg='Die Distributed Attack auf 10.47.'.$remote['ip'].' (Besitzer: [usr='.$owner['id'].']'.$owner['name'].'[/usr]), an der du teilgenommen hast, war leider nicht erfolgreich!';

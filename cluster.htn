@@ -72,7 +72,7 @@ Dort findest du einen "Mitgliedsantrag stellen"-Link.</p></div>
 #  kein Cluster
 if($cluster===false) { nocluster(); createlayout_bottom(); exit; }
 
-if(eregi('http://.*/.*',$cluster[logofile])) {
+if(eregi('http://.*/.*',$cluster['logofile'])) {
   if($usr['sid_ip']!='noip') {
     $img=$cluster['logofile'];
     #$img=dereferurl($img);
@@ -118,7 +118,7 @@ if($members>0 && $cluster['points']>0) $av=round($cluster['points']/$members,2);
 
 $money=number_format((int)$cluster['money'],0,',','.');
 
-$clusterstat=cscodetostring($usr[clusterstat]);
+$clusterstat=cscodetostring($usr['clusterstat']);
 
 while(list($bez,$val)=each($cluster)) {
 $cluster[$bez]=safeentities($val);
@@ -221,7 +221,7 @@ if(@mysql_num_rows($r)==1) {
   $convent=cvcodetostring($c[0]);
   $dat=getcluster($c[1]);
 
-  $dat[events]=nicetime4().' Der Cluster [cluster='.$clusterid.']'.$cluster['code'].'[/cluster] hat <i>'.$convent.'</i> mit euch annulliert!'.LF.$dat['events'];
+  $dat['events']=nicetime4().' Der Cluster [cluster='.$clusterid.']'.$cluster['code'].'[/cluster] hat <i>'.$convent.'</i> mit euch annulliert!'.LF.$dat['events'];
   db_query('UPDATE clusters SET events=\''.mysql_escape_string($dat['events']).'\' WHERE id='.mysql_escape_string($dat['id']));
 
   $cluster['events']=nicetime4().' [usr='.$usrid.']'.$usr['name'].'[/usr] annulliert <i>'.$convent.'</i> mit dem Cluster [cluster='.$dat['id'].']'.$dat['code'].'[/cluster]!'.LF.$cluster['events'];
@@ -345,7 +345,7 @@ if($dat==false) {
   $dat['events']=nicetime4().' Der Cluster [cluster='.$clusterid.']'.$cluster['code'].'[/cluster] hat <i>'.$convent.'</i> mit euch eingetragen.'.LF.$dat['events'];
   db_query('UPDATE clusters SET events=\''.mysql_escape_string($dat['events']).'\' WHERE id='.mysql_escape_string($dat['id']));
   db_query('INSERT INTO cl_pacts VALUES ('.mysql_escape_string($clusterid).', '.mysql_escape_string($type).', '.mysql_escape_string($dat['id']).');');
-  $cluster[events]=nicetime4().' [usr='.$usrid.']'.$usr['name'].'[/usr] tr&auml;gt <i>'.$convent.'</i> mit dem Cluster [cluster='.$dat['id'].']'.$cname.'[/cluster] ein.'.LF.$cluster['events'];
+  $cluster['events']=nicetime4().' [usr='.$usrid.']'.$usr['name'].'[/usr] tr&auml;gt <i>'.$convent.'</i> mit dem Cluster [cluster='.$dat['id'].']'.$cname.'[/cluster] ein.'.LF.$cluster['events'];
   db_query('UPDATE clusters SET events=\''.mysql_escape_string($cluster['events']).'\' WHERE id='.mysql_escape_string($clusterid));
   $ok='Der Vertrag wurde abgeschlossen.';
 }
@@ -388,7 +388,7 @@ echo '<div class="content" id="cluster">
 <h2>Cluster</h2>
 '.$notif;
 if($usr['clusterstat']==CS_ADMIN || $usr['clusterstat']==CS_COADMIN) {
-$fm=number_format($cluster[money],0,',','.');
+$fm=number_format($cluster['money'],0,',','.');
 echo '<div id="cluster-money">
 <h3>Vermögen</h3>
 <p>Aktuelles Verm&ouml;gen des Clusters: '.$fm.' Credits.</p>
@@ -847,8 +847,8 @@ break;
 case 'battles': //------------------------- BATTLES -------------------------------
 
 
-if($usr[clusterstat]==CS_ADMIN || $usr[clusterstat]==CS_WARLORD ||
-  $usr[clusterstat]==CS_WAECHTER || $usr[clusterstat]==CS_COADMIN) {
+if($usr['clusterstat']==CS_ADMIN || $usr['clusterstat']==CS_WARLORD ||
+  $usr['clusterstat']==CS_WAECHTER || $usr['clusterstat']==CS_COADMIN) {
 
 function xpcinfo($item,$ix_usrid,$ix_pcid) {
 global $STYLESHEET, $REMOTE_FILES_DIR, $DATADIR, $cluster,$clusterid,$sid;
@@ -869,7 +869,7 @@ static $usr_cache,$cluster_cache,$pc_cache;
 
     if($u!==false) {
       echo ' von <a href="user.htn?page=info&amp;sid='.$sid.'&amp;user='.$u['id'].'">'.$u['name'].'</a>';
-      if($u[cluster]!=$clusterid) {
+      if($u['cluster']!=$clusterid) {
 
         $tmp=(int)$u['cluster'];
         if(isset($cluster_cache[$tmp])==false) {
@@ -1155,7 +1155,7 @@ if($dat[0]=='user') {
   $c=getcluster($dat[1]);
   $c['money']+=$dat[3];
   $cluster['events']=nicetime4().' [usr='.$usrid.']'.$usr['name'].'[/usr] überweist '.$dat[3].' Credits an den Cluster [cluster='.$c['id'].']'.$c['code'].'[/cluster]'.LF.$cluster['events'];
-  $c[events]=nicetime4().' Der Cluster [cluster='.$clusterid.']'.$cluster['code'].'[/cluster] überweist dem Cluster '.$dat[3].' Credits.'.LF.$c['events'];
+  $c['events']=nicetime4().' Der Cluster [cluster='.$clusterid.']'.$cluster['code'].'[/cluster] überweist dem Cluster '.$dat[3].' Credits.'.LF.$c['events'];
   db_query('UPDATE clusters SET money=\''.mysql_escape_string($c['money']).'\',events=\''.mysql_escape_string($c['events']).'\' WHERE id='.mysql_escape_string($dat[1]));
   db_query('UPDATE clusters SET money=\''.mysql_escape_string($cluster['money']).'\',events=\''.mysql_escape_string($cluster['events']).'\' WHERE id='.mysql_escape_string($cluster['id']));
   $msg='Dem Cluster '.$c['code'].' wurden '.$dat[2].' Credits &uuml;berwiesen!';
@@ -1252,7 +1252,7 @@ if($usr['clusterstat']==CS_ADMIN || $usr['clusterstat']==CS_MITGLIEDERMINISTER |
 $r=db_query('SELECT * FROM cl_reqs WHERE cluster='.mysql_escape_string($clusterid).' AND dealed=\'no\'');
 $delstr=''; $acstr='';
 while($data=mysql_fetch_assoc($r)):
-  $u=getuser($data[user]);
+  $u=getuser($data['user']);
   if($u===false) continue;
   $chs=$_POST['u'.$u['id']];
   if($chs=='yes') {
@@ -1317,10 +1317,10 @@ $r=db_query('SELECT * FROM cl_pacts WHERE cluster='.mysql_escape_string($cid).' 
 if (mysql_num_rows($r)>0) {
 $s="<table>\n<tr>\n<th>Cluster</th>\n<th>Vertrag</th>\n</tr>\n";
 while($pact=mysql_fetch_assoc($r)):
-  $partner=getcluster($pact[partner]);
+  $partner=getcluster($pact['partner']);
   if($partner!==false) {
-    $temp=cvcodetostring($pact[convent]);
-    $s.="<tr>\n<td><a href=\"cluster.htn?page=info&amp;sid=$sid&amp;cluster=$partner[id]\">$partner[code]</a></td>\n<td>$temp</td>\n</tr>\n";
+    $temp=cvcodetostring($pact['convent']);
+    $s.="<tr>\n<td><a href=\"cluster.htn?page=info&amp;sid=$sid&amp;cluster=$partner['id']\">$partner['code']</a></td>\n<td>$temp</td>\n</tr>\n";
   }
 endwhile;
 $s.="</table>";
@@ -1339,7 +1339,7 @@ $r=db_query('SELECT cl_pacts.convent,clusters.code,clusters.id FROM (cl_pacts RI
 if (mysql_num_rows($r)>0) {
 $s='<table>'.LF.'<tr>'.LF.'<th>Cluster</th>'.LF.'<th>Vertrag</th>'.LF.'</tr>'."\n";
 while($pact=mysql_fetch_assoc($r)):
-  #$partner=getcluster($pact[partner]);
+  #$partner=getcluster($pact['partner']);
   $temp=cvcodetostring($pact['convent']);
   $s.='<tr>'.LF.'<td><a href="cluster.htn?page=info&amp;sid='.$sid.'&amp;cluster='.$pact['id'].'">'.$pact['code'].'</a></td>'.LF.'<td>'.$temp.'</td>'.LF.'</tr>'."\n";
 endwhile;

@@ -25,7 +25,7 @@ CREATE TABLE `abooks` (
   `set3` text NOT NULL,
   `set4` text NOT NULL,
   UNIQUE KEY `user` (`user`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Daten für Tabelle `abooks`
@@ -50,7 +50,7 @@ CREATE TABLE `attacks` (
   `success` tinyint(1) default '0',
   `noticed` tinyint(1) default '0',
   `time` int(11) NOT NULL default '0'
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Daten für Tabelle `attacks`
@@ -75,7 +75,7 @@ CREATE TABLE `cboards` (
   `content` text,
   `box` tinyint(4) default NULL,
   PRIMARY KEY  (`thread`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
 #
 # Daten für Tabelle `cboards`
@@ -92,7 +92,7 @@ CREATE TABLE `cl_pacts` (
   `cluster` smallint(6) default NULL,
   `convent` tinyint(4) default NULL,
   `partner` smallint(6) default NULL
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Daten für Tabelle `cl_pacts`
@@ -110,7 +110,7 @@ CREATE TABLE `cl_reqs` (
   `cluster` smallint(6) default NULL,
   `comment` text,
   `dealed` char(3) default 'no'
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Daten für Tabelle `cl_reqs`
@@ -144,7 +144,7 @@ CREATE TABLE `clusters` (
   `srate_success_cnt` int(11) default '0',
   `srate_noticed_cnt` int(11) default '0',
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM AUTO_INCREMENT=3 ;
 
 #
 # Daten für Tabelle `clusters`
@@ -165,7 +165,7 @@ CREATE TABLE `da_participants` (
   `ip` varchar(7) NOT NULL default '',
   `owner` smallint(6) NOT NULL default '0',
   `owner_name` varchar(40) NOT NULL default ''
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Daten für Tabelle `da_participants`
@@ -186,7 +186,7 @@ CREATE TABLE `distr_attacks` (
   `target` smallint(6) default NULL,
   `item` enum('av','cpu','fw') NOT NULL default 'av',
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
 #
 # Daten für Tabelle `distr_attacks`
@@ -205,7 +205,7 @@ CREATE TABLE `logins` (
   `usr_id` smallint(6) NOT NULL default '0',
   `time` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM AUTO_INCREMENT=18 ;
 
 #
 # Daten für Tabelle `logins`
@@ -241,7 +241,7 @@ CREATE TABLE `logs` (
   `usr_id` smallint(6) NOT NULL default '0',
   `payload` tinytext NOT NULL,
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM AUTO_INCREMENT=2 ;
 
 #
 # Daten für Tabelle `logs`
@@ -266,7 +266,7 @@ CREATE TABLE `mails` (
   `box` char(3) default NULL,
   `xread` char(3) default NULL,
   PRIMARY KEY  (`mail`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
 #
 # Daten für Tabelle `mails`
@@ -316,7 +316,7 @@ CREATE TABLE `pcs` (
   `lrh` varchar(10) default NULL,
   `blocked` varchar(10) default NULL,
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM AUTO_INCREMENT=4 ;
 
 #
 # Daten für Tabelle `pcs`
@@ -342,7 +342,7 @@ CREATE TABLE `rank_clusters` (
   `av_pcs` float default '0',
   `success_rate` float default '0',
   PRIMARY KEY  (`platz`)
-) TYPE=MyISAM AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM AUTO_INCREMENT=2 ;
 
 #
 # Daten für Tabelle `rank_clusters`
@@ -363,7 +363,7 @@ CREATE TABLE `rank_users` (
   `points` int(11) default '0',
   `cluster` smallint(6) default NULL,
   PRIMARY KEY  (`platz`)
-) TYPE=MyISAM AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM AUTO_INCREMENT=2 ;
 
 #
 # Daten für Tabelle `rank_users`
@@ -384,7 +384,7 @@ CREATE TABLE `sysmsgs` (
   `text` text,
   `xread` char(3) default NULL,
   PRIMARY KEY  (`msg`)
-) TYPE=MyISAM AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM AUTO_INCREMENT=2 ;
 
 # --------------------------------------------------------
 
@@ -401,7 +401,7 @@ CREATE TABLE `transfers` (
   `to_usr` smallint(6) default NULL,
   `credits` bigint(11) default '0',
   `time` varchar(10) default NULL
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Daten für Tabelle `transfers`
@@ -421,7 +421,7 @@ CREATE TABLE `upgrades` (
   `end` int(11) NOT NULL default '0',
   `item` varchar(10) NOT NULL default '',
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM AUTO_INCREMENT=11 ;
 
 #
 # Daten für Tabelle `upgrades`
@@ -476,7 +476,7 @@ CREATE TABLE `users` (
   `tcode` varchar(16) default NULL,
   `pcview_ext` enum('yes','no') NOT NULL default 'yes',
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM AUTO_INCREMENT=4 ;
 
 #
 # Daten für Tabelle `users`

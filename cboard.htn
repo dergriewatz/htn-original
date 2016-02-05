@@ -12,7 +12,7 @@ if($action=='') $action=$_REQUEST['action'];
 if($action=='') $action=$_REQUEST['a'];
 if($action=='') $action=$_REQUEST['m'];
 
-$cix=$usr[cluster];
+$cix=$usr['cluster'];
 $cluster=getcluster($cix);
 
 
@@ -28,7 +28,7 @@ echo '<p><a href="cboard.htn?sid='.$sid.'&amp;a=newthreadform">Neuen Beitrag ers
 function listboard($boxid) {
 global $DATADIR,$sid,$usrid,$pcid,$cix,$usr,$cluster;
 
-$admin=($usr[clusterstat]==CS_ADMIN || $usr[clusterstat]==CS_COADMIN);
+$admin=($usr['clusterstat']==CS_ADMIN || $usr['clusterstat']==CS_COADMIN);
 
 $result=db_query('SELECT * FROM cboards WHERE cluster LIKE \''.mysql_escape_string($cix).'\' AND box LIKE \''.mysql_escape_string($boxid).'\' AND relative LIKE \'-1\' ORDER BY time ASC;');
 $cnt=mysql_num_rows($result);
@@ -61,10 +61,10 @@ while($data=mysql_fetch_assoc($result)):
   if($aws<1) $aws='keine';
   $tmp.='<td>'.$aws.'</td>';
   if($admin) {
-    $t=$data[thread];
-    $ch1=($data[box]==0 ? ' selected' : '');
-    $ch2=($data[box]==1 ? ' selected' : '');
-    $ch3=($data[box]==2 ? ' selected' : '');
+    $t=$data['thread'];
+    $ch1=($data['box']==0 ? ' selected' : '');
+    $ch2=($data['box']==1 ? ' selected' : '');
+    $ch3=($data['box']==2 ? ' selected' : '');
     $tmp.='<td>';
     /* if(time() > $lastm_time+EDIT_TIME_OUT) { */
       $tmp.='<input type="checkbox" name="edit'.$t.'" value="yes" id="d'.$t.'" />';
@@ -102,7 +102,7 @@ break;
 
 case 'admin': // ------------------------ ADMIN ---------------------------------
 
-if($usr[clusterstat]!=CS_ADMIN && $usr[clusterstat]!=CS_COADMIN) { no_('mt0'); exit; }
+if($usr['clusterstat']!=CS_ADMIN && $usr['clusterstat']!=CS_COADMIN) { no_('mt0'); exit; }
 
 $box=(int)$_REQUEST['box'];
 
@@ -142,7 +142,7 @@ case 'addthread': // ------------------------ ADD THREAD -----------------------
 $ts=time();
 $title=trim($_POST['title']);
 $text=$_POST['text'];
-$boxid=(int)$_POST[box];
+$boxid=(int)$_POST['box'];
 if($boxid<0 || $boxid>2) $boxid=0;
 
 if($text!='') {
@@ -175,7 +175,7 @@ case 'addreply': // ------------------------ ADD REPLY -------------------------
 $ts=time();
 $title=trim($_POST['title']);
 $text=$_POST['text'];
-$thread=(double)$_REQUEST[threadid];
+$thread=(double)$_REQUEST['threadid'];
 
 if($text!='') {
 
@@ -203,8 +203,8 @@ $id=(double)$_REQUEST['threadid'];
 
 function show_beitrag($data) {
   global $STYLESHEET,$DATADIR,$sid;
-  #$sender=getuser($data[user]);
-  if($data[relative]==-1) echo '<h3>Beitrag: '.$data['subject'].'</h3><br />'."\n";
+  #$sender=getuser($data['user']);
+  if($data['relative']==-1) echo '<h3>Beitrag: '.$data['subject'].'</h3><br />'."\n";
   $cstat=cscodetostring($data['user_cstat']);
   $time=nicetime($data['time']);
 echo '<table>
@@ -272,7 +272,7 @@ $text=nl2br($text);
 $text=str_replace('  ',' ',$text);
 $a=LoadSmilies();
 for($i=0;$i<count($a);$i++) {
-$text=str_replace(htmlentities($a[$i][symbol]),'<img src="smilies/'.$a[$i]['file'].'" align=middle border=0>',$text);
+$text=str_replace(htmlentities($a[$i]['symbol']),'<img src="smilies/'.$a[$i]['file'].'" align=middle border=0>',$text);
 }
 #$text=replace_uri($text);
 

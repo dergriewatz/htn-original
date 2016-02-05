@@ -183,7 +183,7 @@ $country=$_POST['country'];
 
 # IST DAS LAND VOLL ? START
 $c=GetCountry('id',$country);
-$subnet=$c[subnet];
+$subnet=$c['subnet'];
 
 $r=db_query('SELECT `id` FROM `pcs` WHERE `ip` LIKE \''.mysql_escape_string($subnet).'.%\';');
 $cnt=mysql_num_rows($r);
@@ -229,7 +229,7 @@ break;
 
 case 'regactivate': // ----------------------- RegActivate --------------------------
 
-if(strlen($_GET[code])<>REG_CODE_LEN) { simple_message('Keine Hackversuche bitte!'); exit; }
+if(strlen($_GET['code'])<>REG_CODE_LEN) { simple_message('Keine Hackversuche bitte!'); exit; }
 
 $fn='data/regtmp/'.$_GET['code'].'.txt';
 if(file_exists($fn)==false) {
@@ -308,7 +308,7 @@ if(check_email($email)===true) {
 $usr=getuser($usrname,'name');
 
 if($usr!==false) {
-if($email==strtolower($usr[email])) {
+if($email==strtolower($usr['email'])) {
   $pwd=generateMnemonicPassword();
 
   db_query('UPDATE users SET password=\''.md5($pwd).'\' WHERE id=\''.mysql_escape_string($usr['id']).'\';');
@@ -319,7 +319,7 @@ if($email==strtolower($usr[email])) {
   simple_message('Das neue Passwort wurde an Deine Email-Adresse geschickt!');
   } else {
     simple_message('Beim Verschicken der Email trat ein Fehler auf!');
-    /*if($_SERVER[HTTP_HOST]==localhost)*/ echo '<br />Neues Passwort: '.$pwd;
+    /*if($_SERVER['HTTP_HOST']==localhost)*/ echo '<br />Neues Passwort: '.$pwd;
   }
 
 } else { unset($usr); simple_message('Falsche Email-Adresse!'); }

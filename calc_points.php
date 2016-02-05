@@ -51,7 +51,7 @@ while($user=mysql_fetch_assoc($u_result)):
   #reset($pcs);
   #foreach($pcs As $pcid):
     #$sql='UPDATE pcs SET owner_points=$upoints,owner_name=\''.mysql_escape_string($user['name']).'\' ';
-    #$cluster=getcluster($user[cluster]);
+    #$cluster=getcluster($user['cluster']);
     #if($cluster!==false) {
     #  $sql.=',owner_cluster='.mysql_escape_string($cluster['id']).', owner_cluster_code=\''.mysql_escape_string($cluster['code']).'\' ';
     #}
@@ -59,7 +59,7 @@ while($user=mysql_fetch_assoc($u_result)):
     #db_query($sql);
   #endforeach;
 
-  $c=$user[cluster];
+  $c=$user['cluster'];
   if($c!='' && $c!=0) {
     #$r=db_query('SELECT id FROM clusters WHERE id=\''.mysql_escape_string($c).'\' LIMIT 1');
     #if(mysql_num_rows($r)>0) {
@@ -69,14 +69,14 @@ while($user=mysql_fetch_assoc($u_result)):
     #}
   }
 
-  if(is_noranKINGuser($user[id])==false && $user[id]!=6249 && $user[id]!=19061)
-    $rank[$user[id].';'.$user[name].';'.$user[cluster]]=$upoints;
+  if(is_noranKINGuser($user['id'])==false && $user['id']!=6249 && $user['id']!=19061)
+    $rank[$user['id'].';'.$user['name'].';'.$user['cluster']]=$upoints;
   else
-    db_query('UPDATE users SET points=\''.mysql_escape_string($upoints).'\',rank=\'0\' WHERE id=\''.mysql_escape_string($user[id]).'\';');
+    db_query('UPDATE users SET points=\''.mysql_escape_string($upoints).'\',rank=\'0\' WHERE id=\''.mysql_escape_string($user['id']).'\';');
 endwhile;
 
 #$pcinfo=gettableinfo('pcs',dbname($server));
-#file_put('data/_server'.$server.'/pc-count.dat', $pcinfo[Rows]);
+#file_put('data/_server'.$server.'/pc-count.dat', $pcinfo['Rows']);
 file_put('data/_server'.$server.'/user-count.dat', mysql_num_rows($u_result));
 
 ignore_user_abort(0);
@@ -99,28 +99,28 @@ db_query('TRUNCATE TABLE rank_clusters'); # Tabelle leeren
 
 unset($b); settype($b,'array');
 while(list($bez,$val)=each($clusters)):
-  $b[$bez]=$clusters[$bez][points];
+  $b[$bez]=$clusters[$bez]['points'];
 endwhile;
 
 arsort($b);
 unset($c); settype($c,'array');
 while(list($bez,$val)=each($b)):
-  $c[$bez][points]=$val;
-  $c[$bez][pcs]=$clusters[$bez][pcs];
-  $c[$bez][members]=$clusters[$bez][members];
+  $c[$bez]['points']=$val;
+  $c[$bez]['pcs']=$clusters[$bez]['pcs'];
+  $c[$bez]['members']=$clusters[$bez]['members'];
 endwhile;
 
 while(list($bez,$dat)=each($c)) {
   $bez=substr($bez,1);
-  $av_p=round($dat[points]/$dat[members],2);
-  $av_pcs=round($dat[pcs]/$dat[members],2);
+  $av_p=round($dat['points']/$dat['members'],2);
+  $av_pcs=round($dat['pcs']/$dat['members'],2);
   
   // SUCCESS RATE CALCULATION START
     $cluster=getcluster($bez);
 
-    $total=$cluster[srate_total_cnt];
-    $scnt=$cluster[srate_success_cnt];
-    $ncnt=$cluster[srate_noticed_cnt];
+    $total=$cluster['srate_total_cnt'];
+    $scnt=$cluster['srate_success_cnt'];
+    $ncnt=$cluster['srate_noticed_cnt'];
     if($total>0) {
 
         $psucceeded=$scnt * 100 / $total;
@@ -132,8 +132,8 @@ while(list($bez,$dat)=each($c)) {
     } else $srate=0;
   // SUCCESS RATE CALCULATION END
   
-  if($bez!=$no_ranking_clusters) db_query('INSERT INTO rank_clusters VALUES(0,\''.mysql_escape_string($bez).'\',\''.mysql_escape_string($dat[members]).'\',\''.mysql_escape_string($dat[points]).'\',\''.mysql_escape_string($av_p).'\',\''.mysql_escape_string($dat[pcs]).'\',\''.mysql_escape_string($av_pcs).'\',\''.mysql_escape_string($srate).'\');');
-  db_query('UPDATE clusters SET points=\''.mysql_escape_string($dat[points]).'\',rank=\''.mysql_insert_id().'\' WHERE id=\''.mysql_escape_string($bez).'\' LIMIT 1;');
+  if($bez!=$no_ranking_clusters) db_query('INSERT INTO rank_clusters VALUES(0,\''.mysql_escape_string($bez).'\',\''.mysql_escape_string($dat['members']).'\',\''.mysql_escape_string($dat['points']).'\',\''.mysql_escape_string($av_p).'\',\''.mysql_escape_string($dat['pcs']).'\',\''.mysql_escape_string($av_pcs).'\',\''.mysql_escape_string($srate).'\');');
+  db_query('UPDATE clusters SET points=\''.mysql_escape_string($dat['points']).'\',rank=\''.mysql_insert_id().'\' WHERE id=\''.mysql_escape_string($bez).'\' LIMIT 1;');
 }
 
 file_put('data/calc-stat.dat','Gleich fertig!!!');

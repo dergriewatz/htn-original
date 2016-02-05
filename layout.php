@@ -53,7 +53,7 @@ echo '</body>
 function createlayout_top($title='HackTheNet', $nomenu=false, $pads=true)
 {
 global $usr, $javascript, $STYLESHEET, $bodytag, $localhost, $FILE_REQUIRES_PC, $pc, $pcid;
-if ($usr[sid]!='') $sid='&amp;sid='.$usr['sid'];
+if ($usr['sid']!='') $sid='&amp;sid='.$usr['sid'];
 $stylesheet=$STYLESHEET;
 if(@is_dir('styles/'.$stylesheet)==false || $stylesheet=='') $stylesheet='crystal';
 
@@ -78,9 +78,9 @@ if ($sid!='')
 
     menu_entry('game.htn?m=start'.$sid, '&Uuml;bersicht', '&Uuml;bersicht &uuml;ber alles Wichtige auf einen Blick.');
 
-    if ($usr[newmail]>0)
+    if ($usr['newmail']>0)
     {
-      $hw=($usr[newmail]==1 ? '' : 's');
+      $hw=($usr['newmail']==1 ? '' : 's');
       $hw='Du hast '.$usr['newmail'].' neue Message'.$hw;
     }
     menu_entry('mail.htn?m=start'.$sid, 'Messages', 'Hier kannst du Nachrichten verwalten und neue verfassen.', $hw, 'new-messages');

@@ -201,7 +201,7 @@ if(eregi('^10\\.47\\.([0-9]{2,3})\\.([0-9]{1,3})$',$target)==true) {
 } else $e.='Ung&uuml;ltige Ziel-Adresse: IP-Adresse muss in der Form 10.47.x.x vorliegen!<br />';
 
 if(is_noranKINGuser($target['owner']) && $localhost==false) { $e.='Du kannst keinen Administrator des Spiels angreifen!<br />'; }
-if($localhost==false) { if($target[owner]==$usrid) $e.='Du kannst dich nicht selber angreifen!<br />'; }
+if($localhost==false) { if($target['owner']==$usrid) $e.='Du kannst dich nicht selber angreifen!<br />'; }
 
 if($scan & isavailh('scan',$pc)==false) $e.='Der Scan ist noch nicht verf&uuml;gbar!<br />';
 if($trojan & isavailh('trojan',$pc)==false) $e.='Der Trojaner ist noch nicht verf&uuml;gbar!<br />';
@@ -217,7 +217,7 @@ if($smash & $opt=='') { $e.='<tt>REMOTE SMASH</tt> erwartet einen Parameter!<br 
 if($trojan & $opt=='') { $e.='Der Trojaner erwartet einen Parameter!<br />'; }
 if(!($hijack || $trojan || $scan || $smash || $block)) $e.='Du musst mindestens eine Waffe angeben!<br />';
 
-if($hijack && ($pc[lrh]+REMOTE_HIJACK_DELAY>time() && $localhost==false)) $e.='Du kannst immer nur einen <tt>REMOTE HIJACK</tt>-Angriff innerhalb von zwei Tagen ausf&uuml;hren!<br />';
+if($hijack && ($pc['lrh']+REMOTE_HIJACK_DELAY>time() && $localhost==false)) $e.='Du kannst immer nur einen <tt>REMOTE HIJACK</tt>-Angriff innerhalb von zwei Tagen ausf&uuml;hren!<br />';
 
 if($smash) {
   switch($opt) {
@@ -334,7 +334,7 @@ else $text.='niemandem';
   if($hijack) $text.='<li>Es wird <tt>REMOTE HIJACK</tt> eingesetzt.</li>';
   if($king) $text.='<li><br /><br />Der KING ist der KING!</li>';
   $acode=randomx(16);
-  file_put($DATADIR.'/tmp/attack_'.$acode.'.txt', implode('|', array($target[id], $scan, $trojan, $smash, $block, $hijack, $opt, $msg, $cost, $pc['id'])));
+  file_put($DATADIR.'/tmp/attack_'.$acode.'.txt', implode('|', array($target['id'], $scan, $trojan, $smash, $block, $hijack, $opt, $msg, $cost, $pc['id'])));
   db_query('UPDATE users SET acode=\''.mysql_escape_string($acode).'\' WHERE id=\''.mysql_escape_string($usrid).'\' LIMIT 1;');
   $text.='<input type="hidden" name="acode" value="'.$acode.'">';
 
@@ -370,7 +370,7 @@ break;
 
 case 'pre_execute': // ---------------------- PRE_EXECUTE -----------------------
 
-$code=$_POST[acode];
+$code=$_POST['acode'];
 
 if(file_exists($DATADIR.'/tmp/attack_'.$code.'.txt')==false || $code!=$usr['acode']) { simple_message('Angriff ung&uuml;ltig. Bitte neu erstellen!'); exit; }
 
@@ -381,11 +381,11 @@ if($pcidnew!=$pcid) { $pc=getpc($pcidnew); $pcid=$pcidnew; }
 if(!isattackallowed($b,$d)) exit;
 
 if($cost>0):
-  $pc[credits]-=$cost;
+  $pc['credits']-=$cost;
   db_query('UPDATE pcs SET credits='.$pc['credits'].' WHERE id='.$pcid.';');
 endif;
 
-$delay=110-((int)$pc[lan]*10);
+$delay=110-((int)$pc['lan']*10);
 $javascript='
 <script language="JavaScript" type="text/javascript">
 function anim(z) {
@@ -454,7 +454,7 @@ $s=$local['di']; if($s!='' && (int)$local['dt']>time()) $local[$s]=0;
 function getDefend($s) {
   global $STYLESHEET, $REMOTE_FILES_DIR, $DATADIR, $remote,$local,$pc,$usr,$usrid;
   eval('$x='.$s.';');
-  if($remote[blocked]>time()) $x=$x*0.8;
+  if($remote['blocked']>time()) $x=$x*0.8;
   return $x;
 }
 function getAttack($s) {
@@ -484,17 +484,17 @@ function getsuccess($attack,$defend,$margin=50) {
   if(mt_rand(0,100)==50) { $success=1; $noticed=0; }
   elseif(mt_rand(100,200)==150) { $success=0; $noticed=1; }
 
-  $a[success]=$success;
-  $a[noticed]=$noticed;
+  $a['success']=$success;
+  $a['noticed']=$noticed;
   return $a;
 }
 
 if($scan==1) { // ------------ SCAN ------------
-  $defend=getDefend('($remote[ids]+$remote[fw])*10');
+  $defend=getDefend('($remote[\'ids\']+$remote[\'fw\'])*10');
   #echo 'defend='.$defend;
-  $attack=getAttack('$local[ips]*20+$local[mk]');
+  $attack=getAttack('$local[\'ips\']*20+$local[\'mk\']');
   $tmp=getsuccess($attack,$defend,75);
-  $success=$tmp[success]; $noticed=$tmp[noticed];
+  $success=$tmp['success']; $noticed=$tmp['noticed'];
   #echo 'Attack = '.$attack.' (IPS='.$local['ips'].' / MK='.$local['mk'].')<br />Defend =  '.$defend.' (IDS='.$remote['ids'].' / FW='.$remote['fw'].')<br /><br />Success = '.$success.'<br />Noticed =  '.$noticed;
   if($success!=0) $usr['newmail']+=1;
   createlayout_top('HackTheNet - Operation Center');
@@ -517,7 +517,7 @@ if($scan==1) { // ------------ SCAN ------------
     else { echo 'Du konntest aber nicht anonym bleiben!';
     addsysmsg($remote['owner'],'Auf deinen Rechner 10.47.'.$remote['ip'].' ('.$remote['name'].') wurde ein Spionage-Angriff ver&uuml;bt!<br />Er war erfolgreich!<br />Der Feind konnte als [usr='.$usrid.']'.$usr['name'].'[/usr] identifiziert werden!'.$msg); }
     echo '<br /><br />Ein Bericht wurde dir als System-Nachricht zugestellt.';
-    $owner=getuser($remote[owner]);
+    $owner=getuser($remote['owner']);
     addsysmsg($usrid,'<b>Spionage-Bericht von 10.47.'.$remote['ip'].'</b> Besitzer: [usr='.$owner['id'].']'.$owner['name'].'[/usr]<br />
     Prozessor = '.$cpu_levels[$remote['cpu']].' Mhz,<br />Arbeitsspeicher = '.$ram_levels[$remote['ram']].' MB RAM,<br /> MoneyMarket = v'.$remote['mm'].',<br /> BucksBunker = v'.$remote['bb'].',<br />
     Firewall = v'.$remote['fw'].',<br /> Anti-Virus-Programm = v'.$remote['av'].',<br /> IDS = v'.$remote['ids'].',<br />
@@ -531,10 +531,10 @@ if($scan==1) { // ------------ SCAN ------------
   function deactivate($key) {
     global $STYLESHEET, $REMOTE_FILES_DIR, $DATADIR, $remote,$local,$target,$local2,$remote2;
     global $msg,$success,$noticed,$usr,$usrid;
-    $defend=getDefend('($remote[ids]+$remote[av]+$remote[fw])*15');
-    $attack=getAttack('($local[sdk]+$local[mk]+$local[ips])*16');
+    $defend=getDefend('($remote[\'ids\']+$remote[\'av\']+$remote[\'fw\'])*15');
+    $attack=getAttack('($local[\'sdk\']+$local[\'mk\']+$local[\'ips\'])*16');
     $tmp=getsuccess($attack,$defend,45);
-    $success=$tmp[success]; $noticed=$tmp[noticed];
+    $success=$tmp['success']; $noticed=$tmp['noticed'];
     if($success==1 && $noticed==0) $t=90;
     elseif($success==1 && $noticed==1) $t=45;
 
@@ -548,7 +548,7 @@ if($scan==1) { // ------------ SCAN ------------
       $t=time()+$t*60;
       echo '<span style="color:green;font-weight:bold;">Angriff erfolgreich! '.idtoname($key).' blockiert bis '.nicetime($t).'!</span><br />';
       $s='Auf deinen PC 10.47.'.$remote['ip'].' ('.$remote['name'].') wurde ein erfolgreicher Angriff ver&uuml;bt: '.idtoname($key).' ist blockiert bis '.nicetime($t).'!<br />';
-      #$remote2[di]=$key; $remote2[dt]=$t;
+      #$remote2['di']=$key; $remote2['dt']=$t;
       db_query('UPDATE pcs SET di=\''.mysql_escape_string($key).'\', dt=\''.mysql_escape_string($t).'\' WHERE id='.mysql_escape_string($remote['id']).';');
     } else {
       echo '<span style="color:red;font-weight:bold;">Angriff abgewehrt!</span><br />';
@@ -562,15 +562,15 @@ if($scan==1) { // ------------ SCAN ------------
       echo '<br />Du konntest anonym bleiben!';
       $s.='Der Angreifer konnte leider nicht identifiziert werden!';
     }
-    addsysmsg($remote[owner],$s.$msg);
+    addsysmsg($remote['owner'],$s.$msg);
     echo '</p></div></div>';
     createlayout_bottom();
 
   }
   switch($opt) {
     case 'DEFACEMENT': // ------------ DEFACEMENT ------------
-        $defend=getDefend('($remote[fw]+$remote[av])*12');
-        $attack=getAttack('$local[ips]*15+$local[sdk]*10');
+        $defend=getDefend('($remote[\'fw\']+$remote[\'av\'])*12');
+        $attack=getAttack('$local[\'ips\']*15+$local[\'sdk\']*10');
         $tmp=getsuccess($attack,$defend,30);
         $success=$tmp['success']; $noticed=$tmp['noticed'];
 
@@ -612,8 +612,8 @@ if($scan==1) { // ------------ SCAN ------------
 
         break;
     case 'TRANSFER': // ------------ TRANSFER ------------
-      $defend=getDefend('($remote[av]+$remote[ids])*20');
-      $attack=getAttack('($local[sdk]+$local[mk])*20');
+      $defend=getDefend('($remote[\'av\']+$remote[\'ids\'])*20');
+      $attack=getAttack('($local[\'sdk\']+$local[\'mk\'])*20');
       $tmp=getsuccess($attack,$defend,95);
       if($local['ips']<=$remote['ids']) { $success=0; $noticed=1; }
       $success=$tmp['success']; $noticed=$tmp['noticed'];
@@ -625,7 +625,7 @@ if($scan==1) { // ------------ SCAN ------------
         $remote2['lmupd']=time();
         $max=getmaxbb($remote2);
         if($remote2['credits']>$max) $remote2['credits']=$max;
-        db_query('UPDATE pcs SET lmupd=\''.mysql_escape_string($remote2[lmupd]).'\', credits=\''.mysql_escape_string($remote2['credits']).'\' WHERE id='.mysql_escape_string($remote2['id']).';');
+        db_query('UPDATE pcs SET lmupd=\''.mysql_escape_string($remote2['lmupd']).'\', credits=\''.mysql_escape_string($remote2['credits']).'\' WHERE id='.mysql_escape_string($remote2['id']).';');
         $remote['credits']=$remote2['credits'];
       }
 
@@ -663,7 +663,7 @@ if($scan==1) { // ------------ SCAN ------------
         echo 'Du konntest anonym bleiben!';
         $s.='Der Angreifer konnte leider nicht identifiziert werden!';
       }
-      addsysmsg($remote[owner],$s.$msg);
+      addsysmsg($remote['owner'],$s.$msg);
       echo '</p></div></div>';
       createlayout_bottom();
       break;
@@ -680,10 +680,10 @@ if($scan==1) { // ------------ SCAN ------------
   function smash($key) {
     global $STYLESHEET, $REMOTE_FILES_DIR, $DATADIR, $remote,$local,$target,$local2,$remote2;
     global $cpu_levels,$ram_levels,$msg,$success,$noticed,$usr,$usrid;
-    $defend=getDefend('($remote[av]+$remote[fw])*25');
-    $attack=getAttack('($local[sdk]+$local[mk])*30');
+    $defend=getDefend('($remote[\'av\']+$remote[\'fw\'])*25');
+    $attack=getAttack('($local[\'sdk\']+$local[\'mk\'])*30');
     $tmp=getsuccess($attack,$defend,45);
-    $success=$tmp[success]; $noticed=$tmp[noticed];
+    $success=$tmp['success']; $noticed=$tmp['noticed'];
 
     createlayout_top('HackTheNet - Operation Center');
     echo '<div class="content" id="attacks">';
@@ -699,7 +699,7 @@ if($scan==1) { // ------------ SCAN ------------
         $min=1;
       else {
         if($key=='cpu') {
-          if($cpu_levels[$remote[cpu]]>$cpu_levels[0]) $newval=getlastcpulevel($remote[cpu]);
+          if($cpu_levels[$remote['cpu']]>$cpu_levels[0]) $newval=getlastcpulevel($remote['cpu']);
           else $min=1;
         } else {
           if($remote[$key]>1) $newval=($remote[$key]-0.5);
@@ -743,11 +743,11 @@ if($scan==1) { // ------------ SCAN ------------
     no_('bes1');
   }
 } elseif($block==1) {  // ------------ REMOTE BLOCK ------------
-  $defend=getDefend('$remote[ids]*10+$remote[av]*15');
-  $attack=getAttack('$local[sdk]*20+$local[mk]*10');
+  $defend=getDefend('$remote[\'ids\']*10+$remote[\'av\']*15');
+  $attack=getAttack('$local[\'sdk\']*20+$local[\'mk\']*10');
   $tmp=getsuccess($attack,$defend,45);
-  $success=$tmp[success]; $noticed=$tmp[noticed];
-  if($local[cpu]<=$remote[cpu]) { $success=0; $noticed=1; }
+  $success=$tmp['success']; $noticed=$tmp['noticed'];
+  if($local['cpu']<=$remote['cpu']) { $success=0; $noticed=1; }
   if($success==1 & $noticed==0)  $t=180;
   elseif($success==1 & $noticed==1) $t=60;
 
@@ -780,17 +780,17 @@ if($scan==1) { // ------------ SCAN ------------
 
 } elseif($hijack==1) {  // ------------ REMOTE HIJACK ------------
   $ts=time();
-  $pc[lrh]=$ts;
-  $local[lrh]=$ts;
-  $local2[lrh]=$ts;
+  $pc['lrh']=$ts;
+  $local['lrh']=$ts;
+  $local2['lrh']=$ts;
   db_query('UPDATE pcs SET lrh=\''.mysql_escape_string($ts).'\' WHERE id='.mysql_escape_string($pc['id']).';');
   
-  $defend=getDefend('$remote[av]*2+$remote[fw]*2+$remote[ids]*2+$remote[cpu]+$remote[ram]/2');
-  $attack=getAttack('$local[sdk]+$local[mk]+$local[cpu]+$local[ram]+$local[ips]+$local[rh]*2');
+  $defend=getDefend('$remote[\'av\']*2+$remote[\'fw\']*2+$remote[\'ids\']*2+$remote[\'cpu\']+$remote[\'ram\']/2');
+  $attack=getAttack('$local[\'sdk\']+$local[\'mk\']+$local[\'cpu\']+$local[\'ram\']+$local[\'ips\']+$local[\'rh\']*2');
   $tmp=getsuccess($attack,$defend,20); # Toleranz 20
-  $success=$tmp[success]; $noticed=$tmp[noticed];
+  $success=$tmp['success']; $noticed=$tmp['noticed'];
   $tmp=getsuccess($attack,$defend,5); # Toleranz 5
-  if($tmp[success]==1 & $tmp[noticed]==1) { $success=0; $noticed=1; }
+  if($tmp['success']==1 & $tmp['noticed']==1) { $success=0; $noticed=1; }
   if(mt_rand(0,50)<4) { $success=0; $noticed=1; }
   #echo 'defend = '.$defend.'<br>attack = '.$attack;
   #exit;
@@ -805,12 +805,12 @@ if($scan==1) { // ------------ SCAN ------------
     $s='Es wurde versucht, deinen PC 10.47.'.$remote['ip'].' ('.$remote['name'].') zu &uuml;bernehmen! Der Angriff schlug fehl!<br />';
     if($noticed==1) { $s.='Der Angreifer konnte als [usr='.$usrid.']'.$usr['name'].'[/usr] identifiziert werden!';
     } else { $s.='Der Angreifer konnte anonym bleiben!'; }
-    addsysmsg($remote[owner],$s.$msg);
+    addsysmsg($remote['owner'],$s.$msg);
 
   } else {
     echo '<span style="color:green;font-weight:bold;">Du hast den feindlichen PC &uuml;bernommen!</span><br />';
 
-    $rem_own=getuser($remote2[owner]);
+    $rem_own=getuser($remote2['owner']);
     if($rem_own!=false) {
       $rem_own_pc_cnt=(int)@mysql_num_rows(db_query('SELECT id FROM pcs WHERE owner='.$rem_own['id'].' AND id<>'.$remote2['id'].';'));
       #echo mysql_error();
@@ -821,30 +821,30 @@ if($scan==1) { // ------------ SCAN ------------
           if(time()-$s<5) $i=mt_rand(47,103); elseif($i<103) $i++; else $i=47;
           $r=getcountry('subnet',$i);
           if($r!==false) {
-            $r=addpc($r[subnet],$remote[owner],false);
+            $r=addpc($r['subnet'],$remote['owner'],false);
           }
         } while($r===false);
       }
-      saveuser($remote[owner],$rem_own);
+      saveuser($remote['owner'],$rem_own);
       $s='Dein PC 10.47.'.$remote['ip'].' ('.$remote['name'].') wurde von einem feindlichen User &uuml;bernommen!<br />';
       if($noticed==1) { $s.='Der Angreifer konnte als [usr='.$usrid.']'.$usr['name'].'[/usr] identifiziert werden!';
       } else { $s.='Der Angreifer konnte anonym bleiben!'; }
-      addsysmsg($remote[owner],$s.$msg);
+      addsysmsg($remote['owner'],$s.$msg);
     }
 
     # WICHTIG!! Im folgenden die Reihenfolge beachten!! Falsche RF kann TÖDLICH sein!!
     $remote=$remote2;
     $local=$local2;
     $c=mysql_fetch_assoc(db_query('SELECT code FROM clusters WHERE id=\''.mysql_escape_string($usr['cluster']).'\';'));
-    $remote[owner]=$usrid;
-    $remote[owner_name]=$usr[name];
-    $remote[owner_points]=$usr[points];
-    $remote[owner_cluster]=$usr[cluster];
-    $remote[owner_cluster_code]=$c[code];
-    savepc($remote[id],$remote);
+    $remote['owner']=$usrid;
+    $remote['owner_name']=$usr['name'];
+    $remote['owner_points']=$usr['points'];
+    $remote['owner_cluster']=$usr['cluster'];
+    $remote['owner_cluster_code']=$c['code'];
+    savepc($remote['id'],$remote);
     saveuserdata();
     write_pc_list($usrid);
-    if($rem_own!=false) write_pc_list($rem_own[id]);
+    if($rem_own!=false) write_pc_list($rem_own['id']);
   }
   db_query('UPDATE pcs SET lrh=\''.time().'\' WHERE id='.mysql_escape_string($pc['id']).';');
   echo mysql_error();
@@ -868,7 +868,7 @@ function addtoattacklist() {
   $opt=strtolower($opt);
 
   $ts=time();
-  $rem_own=getuser($remote2[owner]);
+  $rem_own=getuser($remote2['owner']);
   $sql='INSERT INTO attacks VALUES('.$pcid.', '.$usrid.', '.(int)$usr['cluster'].', '.(int)$remote2['id'].', '.(int)$rem_own['id'].', '.(int)$rem_own['cluster'].', \''.mysql_escape_string($t).'\', \''.mysql_escape_string($opt).'\', '.mysql_escape_string($success).', '.mysql_escape_string($noticed).', \''.mysql_escape_string($ts).'\');';
   db_query($sql);
   $cluster=getcluster($usr['cluster']);
@@ -907,8 +907,8 @@ $fn=$DATADIR.'/tmp/defacement_'.$_REQUEST['code'].'.txt';
 $i=@file_get($fn);
 $u=getuser($i);
 @unlink($fn);
-if($u[name]!='') {
-  $s=addslashes($_POST[text]);
+if($u['name']!='') {
+  $s=addslashes($_POST['text']);
   if(strlen($s)>1024) $s=substr($s,0,1024);
   db_query('UPDATE users SET infotext=\''.mysql_escape_string($s).'\' WHERE id='.mysql_escape_string($u['id']));
   header('Location: user.htn?a=info&user='.$i.'&sid='.$sid);

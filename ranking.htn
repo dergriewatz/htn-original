@@ -67,7 +67,7 @@ if($type=='user') {
 
     #$total=(int)file_get('data/_server'.$server.'/rank-user-count.dat");
     $info=gettableinfo('rank_users',dbname($server));
-    $total=$info[Rows];
+    $total=$info['Rows'];
     $r=db_query('SELECT * FROM rank_users WHERE platz>='.mysql_escape_string($start).' AND platz<'.mysql_escape_string($start).'+10;');
 
     $cluster_cache;
@@ -170,7 +170,7 @@ echo '<tr>
         if($sorttype==4) $zeile[2].=' %';
         $zeile[3]=htmlspecialchars($c['name']);
         $platz=$i+1;
-        if($c[id]==$cid) {
+        if($c['id']==$cid) {
           $platz='<strong>'.$platz.'</strong>';
           $zeile[1]='<strong>'.$zeile[1].'</strong>';
           $zeile[2]='<strong>'.$zeile[2].'</strong>';

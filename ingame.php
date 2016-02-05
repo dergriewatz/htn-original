@@ -274,14 +274,14 @@ switch($key) {
   break;
 }
 
-$r[c]=ceil($c); # Kosten
-$r[d]=floor($d); # Dauer in Minuten
+$r['c']=ceil($c); # Kosten
+$r['d']=floor($d); # Dauer in Minuten
 if($key!='cpu' && $key!='ram') {
-  $r[c]*=4;
-  $df=duration_faktor($pc[cpu],$pc[ram]);
-  $r[d]*=$df;
-  $r[c]=floor($r[c]);
-  $r[d]=ceil($r[d]);
+  $r['c']*=4;
+  $df=duration_faktor($pc['cpu'],$pc['ram']);
+  $r['d']*=$df;
+  $r['c']=floor($r['c']);
+  $r['d']=ceil($r['d']);
 }
 
 return $r;
@@ -327,8 +327,8 @@ if($udat!==false) {
   db_query('INSERT INTO sysmsgs VALUES(\'0\',\''.mysql_escape_string($user).'\',\''.mysql_escape_string($ts).'\',\''.mysql_escape_string($msg).'\',\'no\');');
   if($save==true) {
     if($user==$usrid) $u=$usr; else $u=$udat;
-    $u[newmail]+=1;
-    setuserval('newmail',$u[newmail],$user);
+    $u['newmail']+=1;
+    setuserval('newmail',$u['newmail'],$user);
     if($user==$usrid) $usr=$u;
   }
   $r=db_query('SELECT * FROM sysmsgs WHERE user='.mysql_escape_string($user).' ORDER BY time ASC');

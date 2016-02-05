@@ -125,8 +125,8 @@ $mcnt=0; $sysmsgs='';
 while($data=mysql_fetch_assoc($result)):
   $mcnt++;
   $time=nicetime($data['time'],'<br />um ');
-  if($data[xread]=='yes') { $new=''; $ch=''; } else { $new=' class="not-read"'; $ch='checked '; }
-  $text=gformattext($data[text]);
+  if($data['xread']=='yes') { $new=''; $ch=''; } else { $new=' class="not-read"'; $ch='checked '; }
+  $text=gformattext($data['text']);
   $sysmsgs.='<tr '.$new.'>'."\n";
   $sysmsgs.='<td class="number">'.$mcnt.'</td>'."\n";
   $sysmsgs.='<td class="time">'.$time.'</td>'."\n";
@@ -310,7 +310,7 @@ break;
 case 'archive': //------------------------- ARCHIVE -------------------------------
 $cnt=@mysql_num_rows(db_query('SELECT * FROM mails WHERE user='.mysql_escape_string($usrid).' AND box=\'arc\''));
 if($cnt<getmaxmails('arc')) {
-  $box=$_REQUEST[type];
+  $box=$_REQUEST['type'];
   $s=getcheckedmail_str($box);
   db_query('UPDATE mails SET xread=\'yes\',box=\'arc\' WHERE '.$s.';');
   newmailcount(true);
@@ -330,7 +330,7 @@ header('Location: mail.htn?m='.$_REQUEST['redir'].'&sid='.$sid.'&ok='.urlencode(
 break;
 
 case 'markunread': //------------------------- Mark Unread -------------------------------
-$box=$_REQUEST[type];
+$box=$_REQUEST['type'];
 $s=getcheckedmail_str($box);
 db_query('UPDATE mails SET xread=\'no\' WHERE '.$s.';');
 newmailcount(true);
@@ -343,7 +343,7 @@ $subject=trim($_POST['subject']); if($subject=='') $subject='(Kein Betreff)';
 $text=trim($_POST['text']);
 
 $recip=getuser($rec,'name');
-$rec=$recip[name];
+$rec=$recip['name'];
 
 $ok='';
 $error='';
@@ -359,7 +359,7 @@ if($recip!=false) {
       $error.='Einen Text sollte die Nachricht schon haben, oder?';
     } else {
       $ts=time();
-      if($usr[lastmail]+15 <= $ts || $localhost || $usrid==1) {
+      if($usr['lastmail']+15 <= $ts || $localhost || $usrid==1) {
 
           $r=db_query('SELECT mail FROM mails WHERE user='.mysql_escape_string($recip['id']).' AND box=\'in\'');
           $cnt=mysql_num_rows($r);
@@ -414,7 +414,7 @@ if($e==false) {
 break;
 
 case 'read': //------------------------- READ -------------------------------
-$msg=(int)$_REQUEST[msg];
+$msg=(int)$_REQUEST['msg'];
 
 $result=db_query('SELECT * FROM mails WHERE USER=\''.mysql_escape_string($usrid).'\' AND mail LIKE \''.mysql_escape_string($msg).'\' LIMIT 1;');
 
@@ -422,12 +422,12 @@ if(mysql_num_rows($result)!=1) exit;
 
 $data=mysql_fetch_assoc($result);
 
-$sender=getuser($data[user2]);
+$sender=getuser($data['user2']);
 $time=nicetime($data['time']);
 
 if($data['xread']!='yes') {
   db_query('UPDATE mails SET xread=\'yes\' WHERE mail LIKE \''.mysql_escape_string($msg).'\';');
-  $unread=(int)$usr[newmail]-1;
+  $unread=(int)$usr['newmail']-1;
   db_query('UPDATE users SET newmail=\''.mysql_escape_string($unread).'\' WHERE id=\''.mysql_escape_string($usrid).'\'');
   $usr['newmail']=$unread;
 }
@@ -475,7 +475,7 @@ createlayout_bottom();
 break;
 
 case 'reply': //------------------------- REPLY -------------------------------
-$msg=$_REQUEST[msg];
+$msg=$_REQUEST['msg'];
 
 $data=mysql_fetch_assoc(db_query('SELECT * FROM mails WHERE mail LIKE \''.mysql_escape_string($msg).'\';'));
 
@@ -592,7 +592,7 @@ function transmit2_mail_list($box) {
       $text=str_replace('<br />',' ',$text);
       if(strlen($text)>50) $text=substr($text,0,50).' ...';
       $text=htmlentities($text);
-      $subject=html_entity_decode($data[subject]);
+      $subject=html_entity_decode($data['subject']);
       if(strlen($subject)>30) $subject=substr($subject,0,30).' ...';
       $subject=htmlentities($subject);
       echo '<tr>

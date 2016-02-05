@@ -235,7 +235,7 @@ Bitte zur Best&auml;tigung eingeben.</td>
 </form>
 </div>';
 
-if($usr[stat]>10) {
+if($usr['stat']>10) {
 echo '<div id="settings-password">
 <form action="user.htn?a=newpwd&amp;sid='.$sid.'" method="post">
 <h3>Passwort &auml;ndern (Sonder-Funktion)</h3>

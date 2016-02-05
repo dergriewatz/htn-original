@@ -5,14 +5,14 @@ if ( !defined('IN_HTN') )
   die('Hacking attempt');
 }
 
-#if($_COOKIE['SSL']=='yes' && $_SERVER[HTTP_HOST]!='ssl-id1.de') {
-#  header('Location: http://ssl-id1.de/htn.ir0.de'.$_SERVER[REQUEST_URI]);
+#if($_COOKIE['SSL']=='yes' && $_SERVER['HTTP_HOST']!='ssl-id1.de') {
+#  header('Location: http://ssl-id1.de/htn.ir0.de'.$_SERVER['REQUEST_URI']);
 #}
 
 define('LF', "\n");
 
 
-#if($_SERVER[REMOTE_ADDR]!='213.54.101.168') {
+#if($_SERVER['REMOTE_ADDR']!='213.54.101.168') {
 if ( file_exists('data/work.txt')== true || file_exists('data/mysql-backup.txt')==true)
   {
          $STYLESHEET='crystal';
@@ -124,13 +124,13 @@ function gFormatText(&$s) {
 global $sid;
 # GEILE FUNKTION!!! VOLL DYNAMISCH COOL!!
 
-$dat[0][pattern]='/\\[usr\\=(.*?)\\](.*?)\\[\\/usr\\]/is';
-$dat[0][replace]='<a href="user.htn?a=info&amp;sid='.$sid.'&amp;user=\\1">\\2</a>';
-$dat[1][pattern]='/\\[cluster\\=(.*?)\\](.*?)\\[\\/cluster\\]/is';
-$dat[1][replace]='<a href="cluster.htn?a=info&amp;sid='.$sid.'&amp;cluster=\\1">\\2</a>';
+$dat[0]['pattern']='/\\[usr\\=(.*?)\\](.*?)\\[\\/usr\\]/is';
+$dat[0]['replace']='<a href="user.htn?a=info&amp;sid='.$sid.'&amp;user=\\1">\\2</a>';
+$dat[1]['pattern']='/\\[cluster\\=(.*?)\\](.*?)\\[\\/cluster\\]/is';
+$dat[1]['replace']='<a href="cluster.htn?a=info&amp;sid='.$sid.'&amp;cluster=\\1">\\2</a>';
 
 foreach($dat as $item):
-  $s=preg_replace($item[pattern],$item[replace],$s);
+  $s=preg_replace($item['pattern'],$item['replace'],$s);
 endforeach;
 
 $s=str_replace('%sid%',$sid,$s);
@@ -207,7 +207,7 @@ function rem_esc_chars($s) {
            }
            fclose($file);
        }
-       if($_SERVER[HTTP_HOST]=='localhost') return str_replace("\r",'',$fdata); else return $fdata;
+       if($_SERVER['HTTP_HOST']=='localhost') return str_replace("\r",'',$fdata); else return $fdata;
    }
 
    function file_put($filename,$strContent) { //----------- File Put -----------------
@@ -422,7 +422,7 @@ global $STYLESHEET, $REMOTE_FILES_DIR, $DATADIR;
 
 if($byid==true) {
   $c=GetCountry('id',$country);
-  $subnet=$c[subnet];
+  $subnet=$c['subnet'];
 } else {
   $c=getcountry('subnet',$country);
   $subnet=$country;
@@ -517,7 +517,7 @@ function reloadsperre_CheckIP($save) { // ------------------ reloadsperre_CheckI
 function delete_account($usrid) { // ------------------ DELETE ACCOUNT ---------------
 $usr=@getuser($usrid);
 if($usr!==false) {
-  $c=$usr[cluster];
+  $c=$usr['cluster'];
   if($c!='') {
     $c=@mysql_num_rows(@db_query('SELECT * FROM users WHERE cluster='.mysql_escape_string($c)));
     if($c < 2) {
@@ -525,7 +525,7 @@ if($usr!==false) {
     } else {
       $r=db_query('SELECT id FROM users WHERE cluster='.mysql_escape_string($usr['cluster']).' AND clusterstat='.(CS_ADMIN).';');
       $admins=@mysql_num_rows($r);
-      if($usr[clusterstat]==CS_ADMIN && $admins<2) {
+      if($usr['clusterstat']==CS_ADMIN && $admins<2) {
         $r=db_query('SELECT * FROM users WHERE cluster='.mysql_escape_string($usr['cluster']).';');
         db_query('UPDATE users SET clusterstat='.(CS_ADMIN).' WHERE id='.mysql_result($r,0,'id').';');
       }
@@ -682,14 +682,14 @@ return floor(pow($factor,2)*$level/20);
 function get_gdph($_pc='') { //---------- Get Total Money per Hour -----------------
 global $STYLESHEET, $REMOTE_FILES_DIR, $DATADIR, $pc;
 if($_pc=='') $_pc=$pc;
-return calc_mph($_pc[ads],DPH_ADS)+calc_mph($_pc[dialer],DPH_DIALER)+
-  calc_mph($_pc[auctions],DPH_AUCTIONS)+calc_mph($_pc[bankhack],DPH_BANKHACK);
+return calc_mph($_pc['ads'],DPH_ADS)+calc_mph($_pc['dialer'],DPH_DIALER)+
+  calc_mph($_pc['auctions'],DPH_AUCTIONS)+calc_mph($_pc['bankhack'],DPH_BANKHACK);
 }
 
 function getmaxbb($_pc='') { //---------- Get Max BucksBunker -----------------
 global $STYLESHEET, $REMOTE_FILES_DIR, $DATADIR, $pc;
 if($_pc=='') $_pc=$pc;
-$max=floor((float)$_pc[bb]*13130);
+$max=floor((float)$_pc['bb']*13130);
 return $max;
 }
 
