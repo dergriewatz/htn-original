@@ -12,7 +12,7 @@ if($action=='') $action=$_REQUEST['action'];
 if($action=='') $action=$_REQUEST['a'];
 if($action=='') $action=$_REQUEST['m'];
 
-# Konstanten für Cluster-Verträge:
+# Konstanten fÃ¼r Cluster-VertrÃ¤ge:
 define('CV_WAR',1,false);
 define('CV_BEISTAND',2,false);
 define('CV_PEACE',3,false);
@@ -282,7 +282,7 @@ echo '<div id="cluster-convents">
 <tr>
 <th>Cluster</th>
 <th>Vertrag</th>
-<th>Löschen?</th>
+<th>LÃ¶schen?</th>
 </tr>
 ';
 while($pact=mysql_fetch_assoc($r)):
@@ -390,7 +390,7 @@ echo '<div class="content" id="cluster">
 if($usr['clusterstat']==CS_ADMIN || $usr['clusterstat']==CS_COADMIN) {
 $fm=number_format($cluster[money],0,',','.');
 echo '<div id="cluster-money">
-<h3>Vermögen</h3>
+<h3>VermÃ¶gen</h3>
 <p>Aktuelles Verm&ouml;gen des Clusters: '.$fm.' Credits.</p>
 </div>
 <div id="cluster-tax">
@@ -414,7 +414,7 @@ echo '<div id="cluster-money">
 if($usr['bigacc']=='yes') $bigacc='&nbsp;<a href="javascript:show_abook(\'pc\')">Adressbuch</a>';
 echo '
 <div id="cluster-transfers">
-<h3>Überweisungen</h3>
+<h3>Ãœberweisungen</h3>
 <form action="cluster.htn?page=transfer&amp;sid='.$sid.'" method="post" name="frm">
 <table>
 <tr>
@@ -651,7 +651,7 @@ if($code!=$cluster['code']) {
   $c=getcluster($code,'code');
   if($c!=false && $c['id']!=$cluster['id']) {
     $e=true;
-    $msg='Ein Cluster mit diesem Code existiert bereits! Bitte einen anderen wählen!';
+    $msg='Ein Cluster mit diesem Code existiert bereits! Bitte einen anderen wÃ¤hlen!';
   }
 }
 
@@ -1148,14 +1148,14 @@ if($dat[0]=='user') {
   if($dat[2]!=$dat[3]) $s.=' Abz&uuml;glich der Geb&uuml;hren hast du '.$dat[3].' Credits erhalten!';
   addsysmsg($recip['owner'],$s);
   $recip_usr=getUser($recip['owner']);
-  $cluster['events']=nicetime4().' [usr='.$usrid.']'.$usr['name'].'[/usr] hat '.$dat[2].' Credits an [usr='.$recip_usr['id'].']'.$recip_usr['name'].'[/usr] überwiesen.'.LF.$cluster['events'];
+  $cluster['events']=nicetime4().' [usr='.$usrid.']'.$usr['name'].'[/usr] hat '.$dat[2].' Credits an [usr='.$recip_usr['id'].']'.$recip_usr['name'].'[/usr] Ã¼berwiesen.'.LF.$cluster['events'];
   db_query('UPDATE clusters SET money=\''.mysql_escape_string($cluster['money']).'\',events=\''.mysql_escape_string($cluster['events']).'\' WHERE id='.mysql_escape_string($cluster['id']));
   $msg='&Uuml;berweisung an 10.47.'.$recip['ip'].' ('.$recip['name'].') ausgef&uuml;hrt!';
 } elseif($dat[0]=='cluster') {
   $c=getcluster($dat[1]);
   $c['money']+=$dat[3];
-  $cluster['events']=nicetime4().' [usr='.$usrid.']'.$usr['name'].'[/usr] überweist '.$dat[3].' Credits an den Cluster [cluster='.$c['id'].']'.$c['code'].'[/cluster]'.LF.$cluster['events'];
-  $c[events]=nicetime4().' Der Cluster [cluster='.$clusterid.']'.$cluster['code'].'[/cluster] überweist dem Cluster '.$dat[3].' Credits.'.LF.$c['events'];
+  $cluster['events']=nicetime4().' [usr='.$usrid.']'.$usr['name'].'[/usr] Ã¼berweist '.$dat[3].' Credits an den Cluster [cluster='.$c['id'].']'.$c['code'].'[/cluster]'.LF.$cluster['events'];
+  $c[events]=nicetime4().' Der Cluster [cluster='.$clusterid.']'.$cluster['code'].'[/cluster] Ã¼berweist dem Cluster '.$dat[3].' Credits.'.LF.$c['events'];
   db_query('UPDATE clusters SET money=\''.mysql_escape_string($c['money']).'\',events=\''.mysql_escape_string($c['events']).'\' WHERE id='.mysql_escape_string($dat[1]));
   db_query('UPDATE clusters SET money=\''.mysql_escape_string($cluster['money']).'\',events=\''.mysql_escape_string($cluster['events']).'\' WHERE id='.mysql_escape_string($cluster['id']));
   $msg='Dem Cluster '.$c['code'].' wurden '.$dat[2].' Credits &uuml;berwiesen!';
@@ -1287,7 +1287,7 @@ db_query('UPDATE clusters SET notice=\''.mysql_escape_string($n).'\' WHERE id='.
 createlayout_top('HackTheNet - Cluster-Notiz');
 echo '<div class="content" id="cluster-notice-saved">'."\n";
 echo '<h2>Cluster-Notiz</h2>'."\n";
-echo '<div class="ok">'.LF.'<h3>Aktion ausgeführt</h3>'.LF.'<p>Notiz gespeichert!</p></div>';
+echo '<div class="ok">'.LF.'<h3>Aktion ausgefÃ¼hrt</h3>'.LF.'<p>Notiz gespeichert!</p></div>';
 echo '</div>';
 createlayout_bottom();
 

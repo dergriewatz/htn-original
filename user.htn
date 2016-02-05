@@ -267,17 +267,17 @@ echo '<html><head><title>Account l&ouml;schen</title></head><body style="font-fa
 </body></html>';
 $code=randomx(16);
 
-$body='Hallo '.$usr['name'].'!'.LF."\n".'Schade, dass du deinen Account bei www.hackthenet.org löschen möchtest!'.LF."\n";
+$body='Hallo '.$usr['name'].'!'.LF."\n".'Schade, dass du deinen Account bei www.hackthenet.org lÃ¶schen mÃ¶chtest!'.LF."\n";
 $body.='Wenn du dir ganz sicher bist, klicke auf den folgenden Link:'."\n";
 $body.='http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/pub.htn?a=deleteaccount&code='.$code;
 
-if(!@mail($usr['email'],'HackTheNet-Account löschen?',$body,'From: robot@hackthenet.org')) {
+if(!@mail($usr['email'],'HackTheNet-Account lÃ¶schen?',$body,'From: robot@hackthenet.org')) {
   echo nl2br($body);
 }
 
 file_put('data/regtmp/del_account_'.$code.'.txt',$usrid.'|'.$server);
 @unlink('data/login/'.$sid.'.txt');
-} else { # Nicht Account löschen sondern Settings speichern
+} else { # Nicht Account lÃ¶schen sondern Settings speichern
 
 $g=$_POST['sex'];
 if($g=='') $g='x';

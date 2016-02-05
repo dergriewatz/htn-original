@@ -15,7 +15,7 @@ USE htn_server1;
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `abooks`
+# Tabellenstruktur fÃ¼r Tabelle `abooks`
 #
 
 CREATE TABLE `abooks` (
@@ -28,14 +28,14 @@ CREATE TABLE `abooks` (
 ) TYPE=MyISAM;
 
 #
-# Daten für Tabelle `abooks`
+# Daten fÃ¼r Tabelle `abooks`
 #
 
 
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `attacks`
+# Tabellenstruktur fÃ¼r Tabelle `attacks`
 #
 
 CREATE TABLE `attacks` (
@@ -53,14 +53,14 @@ CREATE TABLE `attacks` (
 ) TYPE=MyISAM;
 
 #
-# Daten für Tabelle `attacks`
+# Daten fÃ¼r Tabelle `attacks`
 #
 
 
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `cboards`
+# Tabellenstruktur fÃ¼r Tabelle `cboards`
 #
 
 CREATE TABLE `cboards` (
@@ -78,14 +78,14 @@ CREATE TABLE `cboards` (
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 #
-# Daten für Tabelle `cboards`
+# Daten fÃ¼r Tabelle `cboards`
 #
 
 
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `cl_pacts`
+# Tabellenstruktur fÃ¼r Tabelle `cl_pacts`
 #
 
 CREATE TABLE `cl_pacts` (
@@ -95,14 +95,14 @@ CREATE TABLE `cl_pacts` (
 ) TYPE=MyISAM;
 
 #
-# Daten für Tabelle `cl_pacts`
+# Daten fÃ¼r Tabelle `cl_pacts`
 #
 
 
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `cl_reqs`
+# Tabellenstruktur fÃ¼r Tabelle `cl_reqs`
 #
 
 CREATE TABLE `cl_reqs` (
@@ -113,14 +113,14 @@ CREATE TABLE `cl_reqs` (
 ) TYPE=MyISAM;
 
 #
-# Daten für Tabelle `cl_reqs`
+# Daten fÃ¼r Tabelle `cl_reqs`
 #
 
 
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `clusters`
+# Tabellenstruktur fÃ¼r Tabelle `clusters`
 #
 
 CREATE TABLE `clusters` (
@@ -136,7 +136,7 @@ CREATE TABLE `clusters` (
   `homepage` tinytext,
   `box1` varchar(50) default 'Wichtig',
   `box2` varchar(50) default 'Allgemein',
-  `box3` varchar(50) default 'Alte Beiträge',
+  `box3` varchar(50) default 'Alte BeitrÃ¤ge',
   `acceptnew` char(3) default 'yes',
   `rank` smallint(6) default '0',
   `notice` text,
@@ -147,16 +147,16 @@ CREATE TABLE `clusters` (
 ) TYPE=MyISAM AUTO_INCREMENT=3 ;
 
 #
-# Daten für Tabelle `clusters`
+# Daten fÃ¼r Tabelle `clusters`
 #
 
-INSERT INTO `clusters` VALUES (1, 'TestCluster', '=HTNTC=', ' 00:11 Der Cluster wird durch TestUser gegr&uuml;ndet!', 1, 1, NULL, 30, NULL, NULL, 'Wichtig', 'Allgemein', 'Alte Beiträge', 'yes', 1, NULL, 0, 0, 0);
-INSERT INTO `clusters` VALUES (2, 'Administratoren', '::root::', '24.08. um 00:13 [usr=2]Administrator2[/usr] erh&auml;lt durch [usr=1]Administrator[/usr] den Status LiteAdmin.\n24.08. um 00:13 [usr=2]Administrator2[/usr] tritt dem Cluster bei.\n 00:12 Der Cluster wird durch Administrator gegr&uuml;ndet!', 1, 2, NULL, 13036, NULL, NULL, 'Wichtig', 'Allgemein', 'Alte Beiträge', 'yes', 0, NULL, 0, 0, 0);
+INSERT INTO `clusters` VALUES (1, 'TestCluster', '=HTNTC=', ' 00:11 Der Cluster wird durch TestUser gegr&uuml;ndet!', 1, 1, NULL, 30, NULL, NULL, 'Wichtig', 'Allgemein', 'Alte BeitrÃ¤ge', 'yes', 1, NULL, 0, 0, 0);
+INSERT INTO `clusters` VALUES (2, 'Administratoren', '::root::', '24.08. um 00:13 [usr=2]Administrator2[/usr] erh&auml;lt durch [usr=1]Administrator[/usr] den Status LiteAdmin.\n24.08. um 00:13 [usr=2]Administrator2[/usr] tritt dem Cluster bei.\n 00:12 Der Cluster wird durch Administrator gegr&uuml;ndet!', 1, 2, NULL, 13036, NULL, NULL, 'Wichtig', 'Allgemein', 'Alte BeitrÃ¤ge', 'yes', 0, NULL, 0, 0, 0);
 
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `da_participants`
+# Tabellenstruktur fÃ¼r Tabelle `da_participants`
 #
 
 CREATE TABLE `da_participants` (
@@ -168,14 +168,14 @@ CREATE TABLE `da_participants` (
 ) TYPE=MyISAM;
 
 #
-# Daten für Tabelle `da_participants`
+# Daten fÃ¼r Tabelle `da_participants`
 #
 
 
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `distr_attacks`
+# Tabellenstruktur fÃ¼r Tabelle `distr_attacks`
 #
 
 CREATE TABLE `distr_attacks` (
@@ -189,14 +189,14 @@ CREATE TABLE `distr_attacks` (
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 #
-# Daten für Tabelle `distr_attacks`
+# Daten fÃ¼r Tabelle `distr_attacks`
 #
 
 
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `logins`
+# Tabellenstruktur fÃ¼r Tabelle `logins`
 #
 
 CREATE TABLE `logins` (
@@ -208,7 +208,7 @@ CREATE TABLE `logins` (
 ) TYPE=MyISAM AUTO_INCREMENT=18 ;
 
 #
-# Daten für Tabelle `logins`
+# Daten fÃ¼r Tabelle `logins`
 #
 
 INSERT INTO `logins` VALUES (1, '127.0.0.1', 1, 1093129915);
@@ -232,7 +232,7 @@ INSERT INTO `logins` VALUES (17, '127.0.0.1', 1, 1094132687);
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `logs`
+# Tabellenstruktur fÃ¼r Tabelle `logs`
 #
 
 CREATE TABLE `logs` (
@@ -244,7 +244,7 @@ CREATE TABLE `logs` (
 ) TYPE=MyISAM AUTO_INCREMENT=2 ;
 
 #
-# Daten für Tabelle `logs`
+# Daten fÃ¼r Tabelle `logs`
 #
 
 INSERT INTO `logs` VALUES (1, 'badlogin', 0, 'nick=, pwd=');
@@ -252,7 +252,7 @@ INSERT INTO `logs` VALUES (1, 'badlogin', 0, 'nick=, pwd=');
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `mails`
+# Tabellenstruktur fÃ¼r Tabelle `mails`
 #
 
 CREATE TABLE `mails` (
@@ -269,14 +269,14 @@ CREATE TABLE `mails` (
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 #
-# Daten für Tabelle `mails`
+# Daten fÃ¼r Tabelle `mails`
 #
 
 
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `pcs`
+# Tabellenstruktur fÃ¼r Tabelle `pcs`
 #
 
 CREATE TABLE `pcs` (
@@ -319,7 +319,7 @@ CREATE TABLE `pcs` (
 ) TYPE=MyISAM AUTO_INCREMENT=4 ;
 
 #
-# Daten für Tabelle `pcs`
+# Daten fÃ¼r Tabelle `pcs`
 #
 
 INSERT INTO `pcs` VALUES (1, 'NoName', '102.1', 1, 'Administrator', 0, 0, '', '21', 9, '10', '10', '10', '9', '9', '9', '9', '20', '10', '10', '20', '10', '10', '5', '5', 2000000000, '2000000000', 'usa', 6518, '', '', '', '', '', '');
@@ -329,7 +329,7 @@ INSERT INTO `pcs` VALUES (3, 'NoName', '80.1', 3, 'TestUser', 0, 0, '', '1', 2, 
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `rank_clusters`
+# Tabellenstruktur fÃ¼r Tabelle `rank_clusters`
 #
 
 CREATE TABLE `rank_clusters` (
@@ -345,7 +345,7 @@ CREATE TABLE `rank_clusters` (
 ) TYPE=MyISAM AUTO_INCREMENT=2 ;
 
 #
-# Daten für Tabelle `rank_clusters`
+# Daten fÃ¼r Tabelle `rank_clusters`
 #
 
 INSERT INTO `rank_clusters` VALUES (1, 1, 1, 30, '30', 1, '1', '0');
@@ -353,7 +353,7 @@ INSERT INTO `rank_clusters` VALUES (1, 1, 1, 30, '30', 1, '1', '0');
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `rank_users`
+# Tabellenstruktur fÃ¼r Tabelle `rank_users`
 #
 
 CREATE TABLE `rank_users` (
@@ -366,7 +366,7 @@ CREATE TABLE `rank_users` (
 ) TYPE=MyISAM AUTO_INCREMENT=2 ;
 
 #
-# Daten für Tabelle `rank_users`
+# Daten fÃ¼r Tabelle `rank_users`
 #
 
 INSERT INTO `rank_users` VALUES (1, 3, 'TestUser', 30, 1);
@@ -374,7 +374,7 @@ INSERT INTO `rank_users` VALUES (1, 3, 'TestUser', 30, 1);
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `sysmsgs`
+# Tabellenstruktur fÃ¼r Tabelle `sysmsgs`
 #
 
 CREATE TABLE `sysmsgs` (
@@ -389,7 +389,7 @@ CREATE TABLE `sysmsgs` (
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `transfers`
+# Tabellenstruktur fÃ¼r Tabelle `transfers`
 #
 
 CREATE TABLE `transfers` (
@@ -404,14 +404,14 @@ CREATE TABLE `transfers` (
 ) TYPE=MyISAM;
 
 #
-# Daten für Tabelle `transfers`
+# Daten fÃ¼r Tabelle `transfers`
 #
 
 
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `upgrades`
+# Tabellenstruktur fÃ¼r Tabelle `upgrades`
 #
 
 CREATE TABLE `upgrades` (
@@ -424,14 +424,14 @@ CREATE TABLE `upgrades` (
 ) TYPE=MyISAM AUTO_INCREMENT=11 ;
 
 #
-# Daten für Tabelle `upgrades`
+# Daten fÃ¼r Tabelle `upgrades`
 #
 
 
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `users`
+# Tabellenstruktur fÃ¼r Tabelle `users`
 #
 
 CREATE TABLE `users` (
@@ -479,7 +479,7 @@ CREATE TABLE `users` (
 ) TYPE=MyISAM AUTO_INCREMENT=4 ;
 
 #
-# Daten für Tabelle `users`
+# Daten fÃ¼r Tabelle `users`
 #
 
 INSERT INTO `users` VALUES (1, 'Administrator', 'admin@local.host', 'd41d8cd98f00b204e9800998ecf8427e', '1', 'x', '0.0.0', 1000, '1093129845', '1093129845', 1000, NULL, NULL, NULL, NULL, 'no', 'yes', 'no', 'no', 'cluster points ranking', 'no', 0, NULL, 6518, NULL, NULL, 2, '02.09.', 1094132687, '', '127.0.0.1', 'no', 'crystal', NULL, NULL, 0, 'yes', NULL, NULL, 'no');

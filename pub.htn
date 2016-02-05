@@ -106,9 +106,9 @@ mysql_select_db(dbname($server));
 $info=gettableinfo('users',dbname($server));  if($info['Rows']>=MAX_USERS_PER_SERVER) exit;
 $e=false;
 
-$badwords='king|fuck|fick|sex|porn|penis|vagina|arsch|hitler|himmler|goebbels|göbbels|hure|nutte|fotze|bitch|schlampe';
-# nein, king ist kein böses, sondern ein reserviertes wort ^^
-$nickzeichen='abcdefghijklmnopqrstuvwxyzäüöABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜß0123456789_-:@.!=?\$%/&';
+$badwords='king|fuck|fick|sex|porn|penis|vagina|arsch|hitler|himmler|goebbels|gÃ¶bbels|hure|nutte|fotze|bitch|schlampe';
+# nein, king ist kein bÃ¶ses, sondern ein reserviertes wort ^^
+$nickzeichen='abcdefghijklmnopqrstuvwxyzÃ¤Ã¼Ã¶ABCDEFGHIJKLMNOPQRSTUVWXYZÃ„Ã–ÃœÃŸ0123456789_-:@.!=?\$%/&';
 function checknick($nick) {
 global $STYLESHEET, $REMOTE_FILES_DIR, $DATADIR, $nickzeichen;
 $b=true;
@@ -150,7 +150,7 @@ $selcode=str_replace('%path%','images/maps',file_get('data/pubtxt/selcountry_bod
 echo '<div class="content" id="register">
 <h2>Registrierung</h2>
 <div id="register-step2">
-<h3>Schritt 2: Land auswählen</h3>
+<h3>Schritt 2: Land auswÃ¤hlen</h3>
 <p>Bitte w&auml;hle jetzt, in welchem Land der Erde dein Computer stehen soll. Nat&uuml;rlich nur im Spiel und nicht in echt...</p>
 <form action="pub.htn?a=regsubmit2" method="post" name="coolform">
 <input type="hidden" name="code" value="'.$tmpfnx.'" />
@@ -313,7 +313,7 @@ if($email==strtolower($usr[email])) {
 
   db_query('UPDATE users SET password=\''.md5($pwd).'\' WHERE id=\''.mysql_escape_string($usr['id']).'\';');
 
-  if(@mail($email,'Zugangsdaten für HackTheNet',"\n".'http://www.hackthenet.org/'.LF."\n".'Server: Server '.$server."\n".'Benutzername: '.$usr['name'].LF.'Passwort: '.$pwd."\n",'From: HackTheNet <robot@hackthenet.org>')) {
+  if(@mail($email,'Zugangsdaten fÃ¼r HackTheNet',"\n".'http://www.hackthenet.org/'.LF."\n".'Server: Server '.$server."\n".'Benutzername: '.$usr['name'].LF.'Passwort: '.$pwd."\n",'From: HackTheNet <robot@hackthenet.org>')) {
   db_query('UPDATE users SET sid=\'\' WHERE id=\''.mysql_escape_string($usr['id']).'\' LIMIT 1;');
   unset($usr);
   simple_message('Das neue Passwort wurde an Deine Email-Adresse geschickt!');

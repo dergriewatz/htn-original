@@ -126,7 +126,7 @@ while(list($bez,$dat)=each($c)) {
         $psucceeded=$scnt * 100 / $total;
         $pnoticed=$ncnt * 100 / $total;
 
-        // Erfolg ist gut und z‰hlt 75%
+        // Erfolg ist gut und z√§hlt 75%
         // Bemerkt ist schlecht (deshalb 100-$pnoticed) und z&auml;hlt 25%
         $srate=$psucceeded * 0.75 + (100 - $pnoticed) * 0.25;
     } else $srate=0;

@@ -1,5 +1,5 @@
 <html><head>
-<title>Land w‰hlen</title>
+<title>Land w√§hlen</title>
 
 <script language="JavaScript" type="text/javascript" src="../global.js"></script>
 <script language="JavaScript" type="text/javascript" src="selcountry.js"></script>

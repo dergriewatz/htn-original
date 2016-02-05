@@ -171,7 +171,7 @@ echo '<div id="cluster-create-distributed-attack2">
 <td>10.47.'.$target['ip'].'</td>
 </tr>
 <tr>
-<th>Eigentümer:</th>
+<th>EigentÃ¼mer:</th>
 <td><a href="user.htn?page=info&amp;sid='.$sid.'&amp;user='.$target['owner'].'">'.$owner['name'].'</a></td>
 </tr>
 <tr>
@@ -260,7 +260,7 @@ break;
 case 'join2': // -------------------------------- JOIN FINAL -------------------------------
 
 // Eine Lockfile sicher erzeugen, sodass das Anlegen nicht parallel geschieht.
-// Sollte die Lockfile nicht angelegt werden können, wird das selbe bis zu zehn
+// Sollte die Lockfile nicht angelegt werden kÃ¶nnen, wird das selbe bis zu zehn
 // Mal weiter probiert, sollte es dann noch fehlschlagen, wird das Script
 // beendet
 $uniqueFileName = $sidfile.getmypid().microtime();
@@ -296,10 +296,10 @@ if(isset($a['id'])==true && $a['cluster']==$clusterid) {
   <p><a href="distrattack.htn?page=list&amp;sid='.$sid.'">Weiter</a></p>';
 }
 
-// Die oben angelegt Lockfile wieder löschen und damit anderen Anfragen
+// Die oben angelegt Lockfile wieder lÃ¶schen und damit anderen Anfragen
 // Platz machen
 if (!unlink($sidfile.'.dalock')) {
-  die('Konnte Upgradeanfragen nicht serialisieren: Sperrdatei konnte nicht gelöscht werden. Die Anfrage wurde jedoch bearbeitet.');
+  die('Konnte Upgradeanfragen nicht serialisieren: Sperrdatei konnte nicht gelÃ¶scht werden. Die Anfrage wurde jedoch bearbeitet.');
 }
 
 break;
@@ -351,7 +351,7 @@ break;
 case 'joinall2': // -------------------------------- JOIN ALL FINAL -------------------------------
 
 // Eine Lockfile sicher erzeugen, sodass das Anlegen nicht parallel geschieht.
-// Sollte die Lockfile nicht angelegt werden können, wird das selbe bis zu zehn
+// Sollte die Lockfile nicht angelegt werden kÃ¶nnen, wird das selbe bis zu zehn
 // Mal weiter probiert, sollte es dann noch fehlschlagen, wird das Script
 // beendet
 $uniqueFileName = $sidfile.getmypid().microtime();
@@ -386,10 +386,10 @@ while($a=mysql_fetch_assoc($r)) {
   echo '<div class="ok"><h3>Angriff</h3>'.LF.'<p>Du bist dabei!</p>'.LF.'</div><br />
   <p><a href="distrattack.htn?page=list&amp;sid='.$sid.'">Weiter</a></p>';
 
-// Die oben angelegt Lockfile wieder löschen und damit anderen Anfragen
+// Die oben angelegt Lockfile wieder lÃ¶schen und damit anderen Anfragen
 // Platz machen
 if (!unlink($sidfile.'.dalock')) {
-  die('Konnte Upgradeanfragen nicht serialisieren: Sperrdatei konnte nicht gelöscht werden. Die Anfrage wurde jedoch bearbeitet.');
+  die('Konnte Upgradeanfragen nicht serialisieren: Sperrdatei konnte nicht gelÃ¶scht werden. Die Anfrage wurde jedoch bearbeitet.');
 }
 
 break;
@@ -436,7 +436,7 @@ if( count(explode(',',$owner['pcs'])) < 2 && (
   ($xdefence<=MIN_ATTACK_XDEFENCE && $rscan==0)
 )) {
   
-  echo '<div class="error"><h3>N00b-Schutz</h3><p>Ziel zu schwach. Angriff nicht möglich!</p></div>';
+  echo '<div class="error"><h3>N00b-Schutz</h3><p>Ziel zu schwach. Angriff nicht mÃ¶glich!</p></div>';
   createlayout_bottom();
   exit;
         

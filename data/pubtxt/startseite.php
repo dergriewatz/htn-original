@@ -15,7 +15,7 @@ echo $notif;
 <tr><td colspan="2"><a href="#public-login-extended-options">Erweiterte Optionen anzeigen &raquo;</a></td></tr>
 <tr id="public-login-extended-options">
 <th>Erweiterte Optionen:</th><td><input type="checkbox" name="save" value="yes" <?=$sv?>/> Login speichern<br />
-<input type="checkbox" name="noipcheck" value="yes" /> IP-Überprüfung deaktivieren (nicht empfohlen)</td></tr>
+<input type="checkbox" name="noipcheck" value="yes" /> IP-ÃœberprÃ¼fung deaktivieren (nicht empfohlen)</td></tr>
 <tr><td colspan="2"><input type="hidden" name="server" value="1" /><input type="submit" value="Enter" /></td></tr>
 </table>
 </form>
@@ -25,7 +25,7 @@ echo $notif;
 <?php
 $gcnt=GetOnlineUserCnt(1);
 echo "Spieler online: $gcnt<br />\n";
-?></p><p><a href="pub.htn?d=stats">Ausführliche Statistik</a></p></div>
+?></p><p><a href="pub.htn?d=stats">AusfÃ¼hrliche Statistik</a></p></div>
 
 <div class="info"><h3>Aktuelle News</h3>
 <p>Besuchen Sie auch das Original dieses Spiels auf <a href="http://www.hackthenet.org/">www.hackthenet.org</a>.</p>

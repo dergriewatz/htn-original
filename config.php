@@ -18,12 +18,12 @@ $stylesheets['anti-ie']=array('id'=>'anti-ie', 'name'=>'Anti-IE', 'author'=>'Vol
 
 # KEINE MITSPIELER:
 $no_ranking_users='1,2';
-$no_ranking_clusters='2'; # Nur eine Angabe möglich
+$no_ranking_clusters='2'; # Nur eine Angabe mÃ¶glich
 
 # KONSTANTEN
-define('UPDATE_INTERVAL',10800, false); # Interval für Punkte-Updates in Sekunden
+define('UPDATE_INTERVAL',10800, false); # Interval fÃ¼r Punkte-Updates in Sekunden
 define('MIN_ATTACK_XDEFENCE',9, false);
-define('MIN_INACTIVE_TIME',259200, false); # Inaktive Zeit vor möglichem Angriff
+define('MIN_INACTIVE_TIME',259200, false); # Inaktive Zeit vor mÃ¶glichem Angriff
 define('REMOTE_HIJACK_DELAY',172800, false); # Wartezeit zwischen zwei Remote Hijacks
 define('MAX_USERS_PER_SERVER',4444, false); # Maximale Anzahl von Spielern pro Server
 

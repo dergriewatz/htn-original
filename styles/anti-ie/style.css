@@ -31,7 +31,7 @@ z-index:1;
 }
 ul.navigation:before
 {
-content:"Hauptmenü";
+content:"HauptmenÃ¼";
 background-image:url("spacer.png");
 background-repeat:repeat-x;
 background-color:#444466;
@@ -307,7 +307,7 @@ font-size:110%;
 }
 dd:before
 {
-content:" » "
+content:" Â» "
 }
 dd
 {

@@ -24,7 +24,7 @@ if ( file_exists('data/work.txt')== true || file_exists('data/mysql-backup.txt')
 <div class="info">
 <h3>Information</h3>
 <p>Im Moment wird am Server gearbeitet.<br />
-Bitte probiere es doch sp‰ter noch einmal.<br />
+Bitte probiere es doch sp√§ter noch einmal.<br />
 Du kannst auch so lange dem <a href="http://forum.hackthenet.org/">Forum</a> oder <br />dem <a href="http://www.ghettogame.net">Ghettogame</a> einen Besuch abstatten.</p>
 </div>
 </div>
@@ -57,12 +57,12 @@ reset($_POST); reset($_REQUEST); reset($_GET); */
 if ( file_exists('data/mysql-backup-prepare.txt')== true ) {
   $notif='<div class="work">
 <h3>Server-Arbeiten</h3>
-<p>Das Spiel wird f¸r ca. eine Minute nicht zug‰nglich sein.</p></div>';
+<p>Das Spiel wird f√ºr ca. eine Minute nicht zug√§nglich sein.</p></div>';
 }
 if ( file_exists('data/longwork-prepare.txt')== true ) {
   $notif='<div class="work">
 <h3>Server-Arbeiten</h3>
-<p>Das Spiel wird in ca. 2 Minuten f¸r l‰ngere Zeit nicht zug‰nglich sein.</p></div>';
+<p>Das Spiel wird in ca. 2 Minuten f√ºr l√§ngere Zeit nicht zug√§nglich sein.</p></div>';
 }
 if(isset($_GET['ok'])) {
   $ok=nl2br(strip_tags($_GET['ok'],'<br /><br>'));
@@ -598,7 +598,7 @@ function processupgrades(&$pc,$savepc=true) { //----------------- PROCRESS UPGRA
 global $bucks;
   $pcid=$pc['id']; # h4ck
   
-  # Upgrade-Vorg‰nge verarbeiten
+  # Upgrade-Vorg√§nge verarbeiten
   $r=db_query('SELECT * FROM `upgrades` WHERE `pc`=\''.mysql_escape_string($pcid).'\' AND `end`<=\''.time().'\' ORDER BY `start` ASC;');
   $cnt=@mysql_num_rows($r);
   if($cnt>0) {
@@ -754,7 +754,7 @@ return $b;
 
 /** string safeentities(text)
  * ----------------------------
- * Wandelt Sonderzeichen in Entit‰ten um vermeidet jedoch mehrfache Entsch‰rfungen wie wie &amp;amp;auml;
+ * Wandelt Sonderzeichen in Entit√§ten um vermeidet jedoch mehrfache Entsch√§rfungen wie wie &amp;amp;auml;
  * aus Marcels lib_string_tools
  * Parameter:
  * string $text : Umzuwandelnder Text

@@ -513,7 +513,7 @@ createlayout_bottom();
 break;
 
 case 'transmit1': //------------------------- TRANSMIT 1 -------------------------------
-createlayout_top('HackTheNet - Messages - Mails übertragen');
+createlayout_top('HackTheNet - Messages - Mails Ã¼bertragen');
 echo '<div class="content" id="messages">
 <h2>Messages</h2>
 <div id="messages-transmit1">
@@ -549,7 +549,7 @@ createlayout_bottom();
 break;
 
 case 'transmit2': //------------------------- TRANSMIT 2 -------------------------------
-createlayout_top('HackTheNet - Messages - Mails übertragen');
+createlayout_top('HackTheNet - Messages - Mails Ã¼bertragen');
 echo '<div class="content" id="messages">
 <h2>Messages</h2>
 <div id="messages-transmit2">
@@ -667,7 +667,7 @@ if($archive=='yes') transmit3_addbox('arc');
 $msg=nicetime().LF.'http://www.hackthenet.org/'.LF."\n".'Hallo '.$usr['name'].'!'.LF.'Hier kommen deine HackTheNet-Ingame-Messages!'.LF."\n"
   .'Es sind insgesamt '.count($list).' Nachrichten, die jeweils als Textdatei an diese Mail angehangen wurden:'."\n";
   foreach($list As $mail) {
-    $msg.='    » '.$mail."\n";
+    $msg.='    Â» '.$mail."\n";
   }
   $msg.="\n".LF.'Greetz'.LF.'HackTheNet-Team';
 $header='From: HackTheNet-Mail-Robot <robot@hackthenet.org>'.LF.'To: '.$usr['name'].' <'.$email.'>'.LF.'X-Mailer: HackTheNet-Mail-Robot by IR'.LF.'MIME-Version: 1.0'.LF.'Content-Type: multipart/mixed; boundary="'.$bound.'"';
@@ -681,7 +681,7 @@ createlayout_top('HackTheNet - Messages');
 echo '<div class="content" id="messages">'."\n";
 #if(!$localhost) {
   if(@mail($email, $subject, $body, $header)) {
-    echo '<div class="ok">'.LF.'<h3>Aktion ausgeführt</h3>'.LF.'<p>Die Email wurde an '.$email.' verschickt.</p>'.LF.'</div>'."\n";
+    echo '<div class="ok">'.LF.'<h3>Aktion ausgefÃ¼hrt</h3>'.LF.'<p>Die Email wurde an '.$email.' verschickt.</p>'.LF.'</div>'."\n";
                  echo '<div class="important">'.LF.'<h3>Achtung!</h3>'.LF.'<p>Pr&uuml;fe erst, ob sie angekommen ist, bevor du die Original-Mails l&ouml;schst.</p>'.LF.'</div>'."\n";
   } else {
     echo '<div class="error">'.LF.'<h3>Fehler!</h3>'.LF.'<p>Beim Verschicken der Email trat ein Fehler auf.</p>'.LF.'</div>'."\n";

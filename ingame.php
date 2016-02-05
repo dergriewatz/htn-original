@@ -87,7 +87,7 @@ if($usr['liu'] > $usr['lic']) {
   db_query('UPDATE users SET lic=\''.time().'\' WHERE id=\''.mysql_escape_string($usrid).'\';');
 }
 
-// Der gefährliche Wurm wird von hier aus gestartet!
+// Der gefÃ¤hrliche Wurm wird von hier aus gestartet!
 $modulo=time()%60;
 if(file_exists('data/worm.txt')===true && ($modulo==0 || $modulo==30)) {
   include 'worm.php';
@@ -377,7 +377,7 @@ elseif($_pc['trojan']>=5 && $key=='deactivate') $b=true;
 return $b;
 }
 
-/* keine ahnung was das für nen shice ist ;-)*/
+/* keine ahnung was das fÃ¼r nen shice ist ;-)*/
 function format_cluster_code($c) {
 return str_replace('\\','%b',$c);
 }

@@ -78,11 +78,11 @@ echo $output;
 if($admin) {
   echo '<tr id="cluster-board-folder'.($boxid+1).'-confirm">'."\n";
   echo '<td colspan="6"><select name="axion">';
-  echo '<option value="delete">Löschen</option>';
+  echo '<option value="delete">LÃ¶schen</option>';
   if ($boxid!=0) echo '<option value="folder1">In Ordner 1 verschieben</option>';
   if ($boxid!=1) echo '<option value="folder2">In Ordner 2 verschieben</option>';
   if ($boxid!=2) echo '<option value="folder3">In Ordner 3 verschieben</option>';
-  echo '</select> <input type="submit" value="Ausführen" /></td>'.LF.'</tr>'."\n";
+  echo '</select> <input type="submit" value="AusfÃ¼hren" /></td>'.LF.'</tr>'."\n";
 }
 echo '</table>';
 if($admin) echo '</form>';
@@ -157,7 +157,7 @@ db_query($sql);
 
 header('Location: cboard.htn?sid='.$sid.'&mode=board&rnd='.randomx());
 
-} else simple_message('Bitte einen Text für den Beitrag eingeben!');
+} else simple_message('Bitte einen Text fÃ¼r den Beitrag eingeben!');
 break;
 
 case 'newthreadform': // ------------------------ NEW THREAD FORM ---------------------------------
@@ -189,7 +189,7 @@ db_query($sql);
 
 header('Location: cboard.htn?sid='.$sid.'&mode=board&rnd='.randomx());
 
-} else simple_message('Bitte einen Text für den Beitrag eingeben!');
+} else simple_message('Bitte einen Text fÃ¼r den Beitrag eingeben!');
 
 break;
 
@@ -230,7 +230,7 @@ if(mysql_num_rows($result)>0) {
 echo '<br /><br />'.LF.'<div id="cluster-board-post-reply">'.LF.'<h3>Antwort schreiben</h3>'."\n";
 showform('addreply');
 echo '</div>';
-echo '<p><a href="cboard.htn?sid='.$sid.'&m=board">Zurück</a></p>'."\n";
+echo '<p><a href="cboard.htn?sid='.$sid.'&m=board">ZurÃ¼ck</a></p>'."\n";
 
 echo '</div>'."\n";
 createlayout_bottom();

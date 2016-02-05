@@ -11,66 +11,66 @@
 
 <div id="rules-rules">
 <h3>&sect;1 - Multis</h3>
-<p>Das Besitzen mehrerer Accounts gleichzeitig, ist verboten und führt zum Spielausschluss.
+<p>Das Besitzen mehrerer Accounts gleichzeitig, ist verboten und fÃ¼hrt zum Spielausschluss.
 Ausnahmen:<br />
-<p>a) Extended Account-Spieler dürfen pro Server einen Account besitzen.<br />
+<p>a) Extended Account-Spieler dÃ¼rfen pro Server einen Account besitzen.<br />
 b) Es ist gestattet, einen fremden Account kurzfristig zu "sitten", z.B. wenn der Besitzer im Urlaub ist.</p>
 
 <h3>&sect;2 - Beleidigungen</h3>
-<p>Beleidigungen, die innerhalb des Spiels oder Forums ablaufen (der IRC-Channel gehört hier nicht dazu) können mit Punkt-Abzug
+<p>Beleidigungen, die innerhalb des Spiels oder Forums ablaufen (der IRC-Channel gehÃ¶rt hier nicht dazu) kÃ¶nnen mit Punkt-Abzug
 oder zeitweiliger Account-Sperrung bestraft werden.</p>
 
 <h3>&sect;3 - Bugusing</h3>
 <p>Das Ausnutzen von Fehlern in der Programmierung, sogenannte Bugs, zu seinem eigenen Vorteil
 ist nicht gestattet. Wer Bugs ausnutzt um sich oder anderen dadurch einen Vorteil zu verschaffen,
-wird mit sofortiger Wirkung aus dem Spiel gelöscht.<br />
-Es ist dagegen erwünscht, dass Fehler bei den Admins oder im Forum gemeldet werden.
-In diesem Fall bestehen allerdings keinerlei Entlohnungs-Ansprüche!</p>
+wird mit sofortiger Wirkung aus dem Spiel gelÃ¶scht.<br />
+Es ist dagegen erwÃ¼nscht, dass Fehler bei den Admins oder im Forum gemeldet werden.
+In diesem Fall bestehen allerdings keinerlei Entlohnungs-AnsprÃ¼che!</p>
 
 <h3>&sect;4 - Bots</h3>
-<p>Es ist strengstens verboten, jegliche Seiten von HackTheNet mit anderen Programmen außer dem Browser abzurufen,
+<p>Es ist strengstens verboten, jegliche Seiten von HackTheNet mit anderen Programmen auÃŸer dem Browser abzurufen,
 dies bezieht sich besonders auf sogenannte Bots oder auch andere Tools, die das Webinterface ersetzen sollen.<br />
 
-a) Erlaubt sind jegliche öffentlich zugänglichen Browser wie Mozilla, Opera, Netscape, Internet Explorer, Konqueror oder Lynx.
+a) Erlaubt sind jegliche Ã¶ffentlich zugÃ¤nglichen Browser wie Mozilla, Opera, Netscape, Internet Explorer, Konqueror oder Lynx.
 <br />
 b) Jegliche Aufrufe von Fremdquellen (Seiten oder Programme), die nicht auf dem HTN-Server liegen, sind verboten,
-Hierzu zählen insbesondere Seiten/Tools die vereinfachtes einloggen oder Verwalten von Accounts ermöglichen.
+Hierzu zÃ¤hlen insbesondere Seiten/Tools die vereinfachtes einloggen oder Verwalten von Accounts ermÃ¶glichen.
 <br />
-c) Auch das programmtechnische oder manuelle Verändern von Links, die vom HTN-Server stammen, ist illegal.
+c) Auch das programmtechnische oder manuelle VerÃ¤ndern von Links, die vom HTN-Server stammen, ist illegal.
 </p>
 
 <h3>&sect;5 - Eingriffe in die Spieltechnik</h3>
-<p>Maßnahmen die übermäßigen Traffic verursachen oder dazu geeignet sind, den Spielablauf zu beeinträchtigen
-sind zu unterlassen und können geahndet werden.<br />
-Verboten sind ebenso automatische oder halbautomatische Scripts, welche Anfragen an die Datenbank ausführen oder
+<p>MaÃŸnahmen die Ã¼bermÃ¤ÃŸigen Traffic verursachen oder dazu geeignet sind, den Spielablauf zu beeintrÃ¤chtigen
+sind zu unterlassen und kÃ¶nnen geahndet werden.<br />
+Verboten sind ebenso automatische oder halbautomatische Scripts, welche Anfragen an die Datenbank ausfÃ¼hren oder
 Spielmechanismen in Gang setzen.<br />
-Ein Verstoß dagegen führt zum sofortigen Ausschluss aus dem Spiel und kann in Ausnahmefällen zu einer
-Strafanzeige führen. Verschafft sich ein User widerrechtlich Zugang zu einem fremden Account muss er mit einer
+Ein VerstoÃŸ dagegen fÃ¼hrt zum sofortigen Ausschluss aus dem Spiel und kann in AusnahmefÃ¤llen zu einer
+Strafanzeige fÃ¼hren. Verschafft sich ein User widerrechtlich Zugang zu einem fremden Account muss er mit einer
 Strafanzeige rechnen.</p>
 
 <h3>&sect;6 - Falschmeldungen</h3>
-<p>Wer wissentlich falsche Bugs oder falsche Regelverstöße meldet oder anderweitig versucht Bugs oder Regelverstöße vorzutäuschen,
-wird mit sofortiger Wirkung aus dem Spiel gelöscht.
-Dies gilt insbesondere für Personen die darauf spekulieren, verlorene Credits oder PCs damit
+<p>Wer wissentlich falsche Bugs oder falsche RegelverstÃ¶ÃŸe meldet oder anderweitig versucht Bugs oder RegelverstÃ¶ÃŸe vorzutÃ¤uschen,
+wird mit sofortiger Wirkung aus dem Spiel gelÃ¶scht.
+Dies gilt insbesondere fÃ¼r Personen die darauf spekulieren, verlorene Credits oder PCs damit
 wieder zu bekommen.</p>
 
 <h3>&sect;7 - Wiedergutmachung im Schadensfall</h3>
-<p>Wer durch einen Bug, Serverausfall oder Ähnliches Credits, PCs usw. verliert, hat keinen Anspruch auf Wiedergutmachung, egal 
-in welcher Form. Persönliche Backups werden nur in Ausnahmefällen bewilligt,
+<p>Wer durch einen Bug, Serverausfall oder Ã„hnliches Credits, PCs usw. verliert, hat keinen Anspruch auf Wiedergutmachung, egal 
+in welcher Form. PersÃ¶nliche Backups werden nur in AusnahmefÃ¤llen bewilligt,
 dies entscheidet wiederum der Admin welcher den jeweiligen Fall bearbeitet.<br />
 Eine Entscheidung eines Admins bei einem Anderen zu hinterfragen um ein anderes Ergebnis zu erhalten, wird bestraft.</p>
 
-<h3>&sect;8 - Verlieren können</h3>
-<p>Der Spieler muss es akzeptieren können, auch mal zu verlieren! Es ist nur ein Spiel. Ebenso sind heul Threads im Forum nicht erwünscht!</p>
+<h3>&sect;8 - Verlieren kÃ¶nnen</h3>
+<p>Der Spieler muss es akzeptieren kÃ¶nnen, auch mal zu verlieren! Es ist nur ein Spiel. Ebenso sind heul Threads im Forum nicht erwÃ¼nscht!</p>
 
-<h3>&sect;9 - Eigentumsverhältnisse</h3>
-<p>Jeder Account, sowie die Credits und Computer sind virtuelle Gegenstände im Spiel
-und bleiben Eigentum der HTN-Admins. Sie werden den Spielern nur leihweise zur Verfügung gestellt.
+<h3>&sect;9 - EigentumsverhÃ¤ltnisse</h3>
+<p>Jeder Account, sowie die Credits und Computer sind virtuelle GegenstÃ¤nde im Spiel
+und bleiben Eigentum der HTN-Admins. Sie werden den Spielern nur leihweise zur VerfÃ¼gung gestellt.
 Das Verkaufen von Accounts oder Credits ist allerdings erlaubt.</p>
 
 <h3>&sect; 10 - Haftungsausschluss</h3>
-<p>Das Spiel wird "so wie es ist" zur Verfügung gestellt. Es bestehen auch im Falle eines Datenverlustes keinerlei materielle oder
-sonstwie geartete Ansprüche gegen die Spiel-Admins.</p>
+<p>Das Spiel wird "so wie es ist" zur VerfÃ¼gung gestellt. Es bestehen auch im Falle eines Datenverlustes keinerlei materielle oder
+sonstwie geartete AnsprÃ¼che gegen die Spiel-Admins.</p>
 
 </div>
 </div>

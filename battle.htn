@@ -257,7 +257,7 @@ if($target['di']!='' && $target['dt']>time() && $trojan==1 && substr($opt,0,10)=
 }
 
 $owner=@getuser($target['owner']);
-if($owner['cluster'] == $no_ranking_clusters) $e.='Mitglieder dieses Clusters kˆnnen nicht angegriffen werden!';
+if($owner['cluster'] == $no_ranking_clusters) $e.='Mitglieder dieses Clusters k√∂nnen nicht angegriffen werden!';
 
 if($owner!=false && $owner['login_time']+MIN_INACTIVE_TIME > time() && substr_count($owner['pcs'],',')<2):
 
@@ -467,16 +467,16 @@ function getsuccess($attack,$defend,$margin=50) {
   $noticed=0;
   $success=0;
   mt_srand();
-  if($attack<$defend) { # Angriff schw‰cher
-    if($attack+$margin<$defend) { # Angriff viel schw‰cher
+  if($attack<$defend) { # Angriff schw√§cher
+    if($attack+$margin<$defend) { # Angriff viel schw√§cher
       $success=0;  $noticed=1;
-    } else { # kein groﬂer Unterschied
+    } else { # kein gro√üer Unterschied
       $success=mt_rand(0,1);  $noticed=1;
     }
-  } else { # Angriff st‰rker
-    if($attack-$margin>$defend) { # Angriff viel st‰rker
+  } else { # Angriff st√§rker
+    if($attack-$margin>$defend) { # Angriff viel st√§rker
       $success=1;  $noticed=0;
-    } else { # kein groﬂer Unterschied
+    } else { # kein gro√üer Unterschied
       $success=1;  $noticed=1;
     }
   }
@@ -832,7 +832,7 @@ if($scan==1) { // ------------ SCAN ------------
       addsysmsg($remote[owner],$s.$msg);
     }
 
-    # WICHTIG!! Im folgenden die Reihenfolge beachten!! Falsche RF kann T÷DLICH sein!!
+    # WICHTIG!! Im folgenden die Reihenfolge beachten!! Falsche RF kann T√ñDLICH sein!!
     $remote=$remote2;
     $local=$local2;
     $c=mysql_fetch_assoc(db_query('SELECT code FROM clusters WHERE id=\''.mysql_escape_string($usr['cluster']).'\';'));

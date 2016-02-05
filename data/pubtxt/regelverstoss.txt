@@ -3,8 +3,8 @@
 <div id="ruleoffence-submit">
 <h3>Regelversto&szlig; melden</h3>
 
-<p><strong>Wenn ein User gegen die <a href="pub.htn?d=rules">Spielregeln</a> verstößt, kannst du
-ihn hier melden! Nach Prüfung des Sachverhaltes wird dann evtl. sein Account gesperrt oder gelöscht!</strong></p><br />
+<p><strong>Wenn ein User gegen die <a href="pub.htn?d=rules">Spielregeln</a> verstÃ¶ÃŸt, kannst du
+ihn hier melden! Nach PrÃ¼fung des Sachverhaltes wird dann evtl. sein Account gesperrt oder gelÃ¶scht!</strong></p><br />
 <form action="pub.htn?a=baduser" method=post>
 <table>
 <tr><th>Dein NickName:</th><td><input name="nick1" size=30 maxlength=20></td></tr>

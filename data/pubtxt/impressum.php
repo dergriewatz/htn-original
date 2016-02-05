@@ -8,6 +8,6 @@ blub</p>
 <p>E-Mail: blub<br />
 Internet: blub</p>
 
-<p>Haftungshinweis: Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
+<p>Haftungshinweis: Trotz sorgfÃ¤ltiger inhaltlicher Kontrolle Ã¼bernehmen wir keine Haftung fÃ¼r die Inhalte externer Links. FÃ¼r den Inhalt der verlinkten Seiten sind ausschlieÃŸlich deren Betreiber verantwortlich.</p>
 
 </div>
