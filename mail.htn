@@ -63,7 +63,7 @@ function maillist($boxid)
         ).'\' ORDER BY time DESC'
     );
     $anz = mysql_num_rows($result);
-    while ($data = mysql_fetch_assoc($result)):
+    while ($data = mysql_fetch_assoc($result)) {
         $mcnt++;
         $u = $data['user2'];
         #if(isset($usr_cache[$u])==false) {
@@ -83,7 +83,7 @@ function maillist($boxid)
         $output .= '<td class="title"><a href="mail.htn?a=read&amp;msg='.$data['mail'].'&amp;sid='.$sid.'">'.$data['subject'].'</a></td>'."\n";
         $output .= '<td class="checkbox"><input name="c'.$data['mail'].'" type="checkbox" value="1"></input></td>'."\n";
         $output .= '</tr>';
-    endwhile;
+    }
 
     $maillist_mcnt = $mcnt;
     $full = ($mcnt < getmaxmails($boxid) ? false : true);
@@ -158,7 +158,7 @@ switch ($action) {
         $anz = mysql_num_rows($result);
         $mcnt = 0;
         $sysmsgs = '';
-        while ($data = mysql_fetch_assoc($result)):
+        while ($data = mysql_fetch_assoc($result)) {
             $mcnt++;
             $time = nicetime($data['time'], '<br />um ');
             if ($data['xread'] == 'yes') {
@@ -175,7 +175,7 @@ switch ($action) {
             $sysmsgs .= '<td class="title">'.$text.'</td>'."\n";
             $sysmsgs .= '<td class="checkbox"><input type="checkbox" '.$ch.'name="c'.$data['msg'].'" value="1" /></td>'."\n";
             $sysmsgs .= '</tr>';
-        endwhile;
+        }
 
         $inboxstate = '<p><strong>'.$maillist_mcnt.' von maximal '.getmaxmails(
                 'in'
@@ -262,7 +262,7 @@ switch ($action) {
 
         $opt = $_POST['opt'];
         $result = db_query('SELECT msg FROM sysmsgs WHERE user=\''.mysql_escape_string($usrid).'\' ORDER BY time DESC');
-        while ($data = mysql_fetch_assoc($result)):
+        while ($data = mysql_fetch_assoc($result)) {
             if ($_POST['c'.$data['msg']] == '1') {
                 $cnt++;
                 if ($opt == 'del') {
@@ -271,7 +271,7 @@ switch ($action) {
                     db_query('UPDATE sysmsgs SET xread=\'yes\' WHERE msg=\''.mysql_escape_string($data['msg']).'\';');
                 }
             }
-        endwhile;
+        }
 
         newmailcount(true);
 
@@ -748,7 +748,7 @@ Du erh&auml;ltst dann eine Email, in deren Anhang du alle gew&auml;hlten Ingame-
                 ).'\' ORDER BY time DESC'
             );
             $anz = mysql_num_rows($result);
-            while ($data = mysql_fetch_assoc($result)):
+            while ($data = mysql_fetch_assoc($result)) {
                 $mcnt++;
                 $sender = GetUser($data['user2']);
                 $time = nicetime2($data['time']);
@@ -771,7 +771,7 @@ Du erh&auml;ltst dann eine Email, in deren Anhang du alle gew&auml;hlten Ingame-
 <td class="checkbox"><input name="'.$box.$data['mail'].'" type="checkbox" value="1" /></td>
 </tr>
 ';
-            endwhile;
+            }
 
         }
 
@@ -809,10 +809,10 @@ Du erh&auml;ltst dann eine Email, in deren Anhang du alle gew&auml;hlten Ingame-
         {
             global $usrid, $body, $list, $bound;
             $sql = trim(getcheckedmail_str($box, $box));
-            if ($sql != ''):
+            if ($sql != '') {
                 $r = db_query('SELECT * FROM mails WHERE '.$sql.';');
-#echo mysql_error().' <tt>SELECT * FROM mails WHERE '.$sql.';</tt><br />';
-                while ($data = mysql_fetch_assoc($r)):
+		#echo mysql_error().' <tt>SELECT * FROM mails WHERE '.$sql.';</tt><br />';
+                while ($data = mysql_fetch_assoc($r)) {
                     $partner = getuser($data['user2']);
                     $data['subject'] = html_entity_decode($data['subject']);
                     $data['text'] = str_replace('<br />', "\r\n", html_entity_decode($data['text']));
@@ -844,8 +844,8 @@ Du erh&auml;ltst dann eine Email, in deren Anhang du alle gew&auml;hlten Ingame-
                         .'Content-Transfer-Encoding: base64'."\n"
                         .'Content-Disposition: attachment; filename="'.$fn.'.txt"'."\n"
                         .LF.$msg."\n";
-                endwhile;
-            endif;
+                }
+            }
         }
 
         $bound = 'BOUND_'.randomx(5).'_HTN';

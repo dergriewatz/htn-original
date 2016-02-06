@@ -59,7 +59,7 @@ switch ($action) {
                 echo '</tr>'."\n";
 
                 $output = '';
-                while ($data = mysql_fetch_assoc($result)):
+                while ($data = mysql_fetch_assoc($result)) {
                     $tmp = '';
                     $r = db_query(
                         'SELECT * FROM cboards WHERE cluster LIKE \''.mysql_escape_string(
@@ -112,7 +112,7 @@ switch ($action) {
                     }
                     $tmp .= '</tr>';
                     $output = $tmp.$output;
-                endwhile;
+                }
                 echo $output;
                 if ($admin) {
                     echo '<tr id="cluster-board-folder'.($boxid + 1).'-confirm">'."\n";
@@ -162,7 +162,7 @@ switch ($action) {
             ).'\' AND box LIKE \''.mysql_escape_string($box).'\' AND relative LIKE \'-1\''
         );
         $cnt = mysql_num_rows($result);
-        while ($data = mysql_fetch_assoc($result)):
+        while ($data = mysql_fetch_assoc($result)) {
             $id = $data['thread'];
             if ($_POST['edit'.$id] != 'yes') {
                 continue;
@@ -201,7 +201,7 @@ switch ($action) {
                     ).'\' AND relative LIKE \'-1\''
                 );
             }
-        endwhile;
+        }
 
         header('Location: cboard.htn?sid='.$sid.'&mode=board&rnd='.randomx());
 
@@ -323,10 +323,10 @@ switch ($action) {
             $result = db_query(
                 'SELECT * FROM cboards WHERE relative LIKE \''.mysql_escape_string($id).'\' ORDER BY time ASC;'
             );
-            while ($data = mysql_fetch_assoc($result)):
+            while ($data = mysql_fetch_assoc($result)) {
                 #array_unshift($a,$data);
                 show_beitrag($data);
-            endwhile;
+            }
             foreach ($a as $item) {
                 show_beitrag($item);
             }
@@ -348,37 +348,40 @@ switch ($action) {
 
 
 function LoadSmilies()
-{ // ------------------------ LOAD SMILIES ---------------------------------
-    $smilies[0] = array('file' => 'angry.gif', 'symbol' => '&gt;:(');
-    $smilies[1] = array('file' => 'biggrin.gif', 'symbol' => ':D');
-    $smilies[2] = array('file' => 'cheesy.gif', 'symbol' => ':lol:');
-    $smilies[3] = array('file' => 'confused.gif', 'symbol' => '%-)');
-    $smilies[4] = array('file' => 'cool.gif', 'symbol' => '8-)');
-    $smilies[5] = array('file' => 'dead.gif', 'symbol' => 'X-(');
-    $smilies[6] = array('file' => 'eek.gif', 'symbol' => ':-O');
-    $smilies[7] = array('file' => 'glubsch.gif', 'symbol' => ':glubsch:');
-    $smilies[8] = array('file' => 'king.gif', 'symbol' => ':king:');
-    $smilies[9] = array('file' => 'sad.gif', 'symbol' => ':-(');
-    $smilies[10] = array('file' => 'sleep.gif', 'symbol' => ':sleep:');
-    $smilies[11] = array('file' => 'smile.gif', 'symbol' => ':-)');
-    $smilies[12] = array('file' => 'tongue.gif', 'symbol' => ':-P');
-    $smilies[13] = array('file' => 'rolleyes.gif', 'symbol' => ':rolleyes:');
-    $smilies[14] = array('file' => 'wink.gif', 'symbol' => ';-)');
-    $smilies[15] = array('file' => 'twisted.gif', 'symbol' => ':evil:');
-    $smilies[16] = array('file' => 'mg.gif', 'symbol' => ':mg:');
+{
+    // ------------------------ LOAD SMILIES ---------------------------------
+    $smilies = array();
+    $smilies[] = array('file' => 'angry.gif', 'symbol' => '&gt;:(');
+    $smilies[] = array('file' => 'biggrin.gif', 'symbol' => ':D');
+    $smilies[] = array('file' => 'cheesy.gif', 'symbol' => ':lol:');
+    $smilies[] = array('file' => 'confused.gif', 'symbol' => '%-)');
+    $smilies[] = array('file' => 'cool.gif', 'symbol' => '8-)');
+    $smilies[] = array('file' => 'dead.gif', 'symbol' => 'X-(');
+    $smilies[] = array('file' => 'eek.gif', 'symbol' => ':-O');
+    $smilies[] = array('file' => 'glubsch.gif', 'symbol' => ':glubsch:');
+    $smilies[] = array('file' => 'king.gif', 'symbol' => ':king:');
+    $smilies[] = array('file' => 'sad.gif', 'symbol' => ':-(');
+    $smilies[] = array('file' => 'sleep.gif', 'symbol' => ':sleep:');
+    $smilies[] = array('file' => 'smile.gif', 'symbol' => ':-)');
+    $smilies[] = array('file' => 'tongue.gif', 'symbol' => ':-P');
+    $smilies[] = array('file' => 'rolleyes.gif', 'symbol' => ':rolleyes:');
+    $smilies[] = array('file' => 'wink.gif', 'symbol' => ';-)');
+    $smilies[] = array('file' => 'twisted.gif', 'symbol' => ':evil:');
+    $smilies[] = array('file' => 'mg.gif', 'symbol' => ':mg:');
 
     return $smilies;
 }
 
 function formatText($s)
-{ // ------------------------ FORMAT TEXT ---------------------------------
+{
+    // ------------------------ FORMAT TEXT ---------------------------------
     global $STYLESHEET, $REMOTE_FILES_DIR, $DATADIR, $sid, $usrid, $pcid, $cix;
 
     $text = $s;
     $text = htmlentities($text);
     $text = nl2br($text);
 
-#$text=preg_replace('/[code](.*?)[\\/code]/is', '<pre>\\1</pre>', $text);
+    #$text=preg_replace('/[code](.*?)[\\/code]/is', '<pre>\\1</pre>', $text);
     $text = str_replace('  ', ' ', $text);
     $a = LoadSmilies();
     for ($i = 0; $i < count($a); $i++) {
@@ -389,13 +392,14 @@ function formatText($s)
         );
     }
 
-#$text=replace_uri($text);
+    #$text=replace_uri($text);
 
     return $text;
 }
 
 function showform($action = 'addthread')
-{ // ---------------------------- SHOW FORM -----------------------
+{
+    // ---------------------------- SHOW FORM -----------------------
     global $STYLESHEET, $REMOTE_FILES_DIR, $DATADIR, $sid, $usrid, $pcid, $usr, $cluster;
 
     if ($action == 'addreply') {

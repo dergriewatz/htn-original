@@ -429,7 +429,7 @@ Bitte zur Best&auml;tigung eingeben.</td>
                 site_header('Optionen');
                 body_start();
                 echo '<h2>Optionen</h2>';
-                echo '<div class=error>FEHLER:<br />'.$msg.'<br /><br />';
+                echo '<div class="error">FEHLER:<br />'.$msg.'<br /><br />';
                 echo 'Aufgrund dieser Fehler wurden die &Auml;nderungen <i>nicht</i> &uuml;bernommen!</div>';
                 echo '</div>';
                 site_footer();
@@ -520,7 +520,7 @@ Bitte zur Best&auml;tigung eingeben.</td>
             $sql = db_query('SELECT * FROM pcs WHERE owner='.mysql_escape_string($a['id']).' ORDER BY name ASC;');
             $pccnt = mysql_num_rows($sql);
 #$attackallowed=false;
-            while ($xpc = mysql_fetch_assoc($sql)):
+            while ($xpc = mysql_fetch_assoc($sql)) {
                 $country = GetCountry('id', $xpc['country']);
                 $xpc['name'] = safeentities($xpc['name']);
                 if ((int)$usr['stat'] >= 100) {
@@ -533,7 +533,7 @@ Bitte zur Best&auml;tigung eingeben.</td>
                     ).'">'.$country['name'].'</a>, '.$xpc['points'].' Punkte)'.$extras.'</li>';
                 #$xdefence=$xpc['fw'] + $xpc['av'] + $xpc['ids']/2;
                 #if($xdefence >= MIN_ATTACK_XDEFENCE OR isavailh('scan',$xpc)==true) $attackallowed=true;
-            endwhile;
+            }
             if (file_exists('data/login/'.$a['sid'].'.txt') == true) {
                 $online = '<span style="color:green;">Online</span>';
             } else {

@@ -371,7 +371,7 @@ function fill(s) {
                 $owner['pcs'],
                 ','
             ) < 2
-        ):
+        ) {
 
             if ($hijack == 1) {
                 $my_points = $pc['points'];
@@ -396,8 +396,7 @@ function fill(s) {
                     $e .= 'Du kannst diesen armen, schwachen PC nicht angreifen!<br />';
                 }
             }
-
-        endif;
+        }
 
 
         $c = GetCountry('id', $pc['country']);
@@ -939,7 +938,7 @@ location.replace(\'battle.htn?m=opc&sid='.$sid.'\');
                                 ).'\' WHERE id='.mysql_escape_string($local['id']).';'
                             );
                         }
-                        echo '<span style="color:green;"><b>Der Angriff war erfolgreich! Du hast $credits Credits geklaut!</b></span><br /><br />';
+                        echo '<span style="color:green;"><b>Der Angriff war erfolgreich! Du hast '.$credits.' Credits geklaut!</b></span><br /><br />';
                         $s = 'Von deinem Rechner 10.47.'.$remote['ip'].' ('.$remote['name'].') wurden '.$credits.' Credits geklaut!<br />';
                     } else {
                         echo '<span style="color:red;"><b>Der Angriff war NICHT erfolgreich!</b></span><br /><br />';
@@ -1068,9 +1067,9 @@ location.replace(\'battle.htn?m=opc&sid='.$sid.'\');
                 $success = 0;
                 $noticed = 1;
             }
-            if ($success == 1 & $noticed == 0) {
+            if ($success == 1 && $noticed == 0) {
                 $t = 180;
-            } elseif ($success == 1 & $noticed == 1) {
+            } elseif ($success == 1 && $noticed == 1) {
                 $t = 60;
             }
 

@@ -34,7 +34,7 @@ function server_update_points($server)
     $current = 0;
     $u_result = db_query('SELECT * FROM users');
     $total = mysql_num_rows($u_result);
-    while ($user = mysql_fetch_assoc($u_result)):
+    while ($user = mysql_fetch_assoc($u_result)) {
         $current++;
         $upoints = 0;
         if ($current % 100 == 0) {
@@ -43,7 +43,7 @@ function server_update_points($server)
 
         $pc_result = db_query('SELECT * FROM pcs WHERE owner=\''.mysql_escape_string($user['id']).'\';');
         $pc_cnt = mysql_num_rows($pc_result);
-        while ($pc = mysql_fetch_assoc($pc_result)):
+        while ($pc = mysql_fetch_assoc($pc_result)) {
             processupgrades($pc);
             $pcpoints = getpcpoints($pc, 'bydata');
             db_query(
@@ -52,7 +52,7 @@ function server_update_points($server)
                 ).'\';'
             );
             $upoints += $pcpoints;
-        endwhile;
+        }
 
         #reset($pcs);
         #foreach($pcs As $pcid):
@@ -84,7 +84,7 @@ function server_update_points($server)
                 ).'\',rank=\'0\' WHERE id=\''.mysql_escape_string($user['id']).'\';'
             );
         }
-    endwhile;
+    }
 
 #$pcinfo=gettableinfo('pcs',dbname($server));
 #file_put('data/_server'.$server.'/pc-count.dat', $pcinfo['Rows']);
@@ -99,7 +99,7 @@ function server_update_points($server)
     arsort($rank);
     db_query('TRUNCATE TABLE rank_users'); # Tabelle leeren
 #$platz=0;
-    while (list($dat, $points) = each($rank)):
+    while (list($dat, $points) = each($rank)) {
         #$platz++;
         $dat = explode(';', $dat);
         $dat[2] = (int)$dat[2];
@@ -112,7 +112,7 @@ function server_update_points($server)
             'UPDATE users SET points='.mysql_escape_string($points).', rank='.mysql_insert_id(
             ).' WHERE id='.mysql_escape_string($dat[0]).' LIMIT 1;'
         );
-    endwhile;
+    }
 
 #file_put('data/_server'.$server.'/rank-user-count.dat', count($rank));
 
@@ -120,18 +120,18 @@ function server_update_points($server)
 
     unset($b);
     settype($b, 'array');
-    while (list($bez, $val) = each($clusters)):
+    while (list($bez, $val) = each($clusters)) {
         $b[$bez] = $clusters[$bez]['points'];
-    endwhile;
+    }
 
     arsort($b);
     unset($c);
     settype($c, 'array');
-    while (list($bez, $val) = each($b)):
+    while (list($bez, $val) = each($b)) {
         $c[$bez]['points'] = $val;
         $c[$bez]['pcs'] = $clusters[$bez]['pcs'];
         $c[$bez]['members'] = $clusters[$bez]['members'];
-    endwhile;
+    }
 
     while (list($bez, $dat) = each($c)) {
         $bez = substr($bez, 1);

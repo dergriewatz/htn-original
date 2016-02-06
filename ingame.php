@@ -80,7 +80,7 @@ if ($FILE_REQUIRES_PC == true) {
         badsession('Das ist nicht dein PC!');
     }
 }
-if ($usr['stat'] > 100 & is_noranKINGuser($usrid) == false) {
+if ($usr['stat'] > 100 && is_noranKINGuser($usrid) == false) {
     $usr['stat'] = 0;
 }
 $STYLESHEET = $usr['stylesheet'];

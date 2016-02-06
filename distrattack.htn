@@ -73,7 +73,7 @@ switch ($action) {
 ';
 
             $z = -1;
-            while ($item = mysql_fetch_assoc($r)):
+            while ($item = mysql_fetch_assoc($r)) {
                 $z++;
                 $initusr = getuser($item['initiator_usr']);
                 if ($initusr !== false) {
@@ -97,13 +97,13 @@ switch ($action) {
                     if ($total == 1) {
                         echo 'keine weiteren';
                     } else {
-                        while ($b = mysql_fetch_assoc($result)):
+                        while ($b = mysql_fetch_assoc($result)) {
                             echo '10.47.'.$b['ip'].' (<a href="user.htn?page=info&amp;sid='.$sid.'&amp;user='.$b['owner'].'">'.$b['owner_name'].'</a>)';
                             if ($i < $total - 1) {
                                 echo '<br />';
                             }
                             $i++;
-                        endwhile;
+                        }
                     }
                     echo '</td>'.LF.'<td>';
                     if ($usr['da_avail'] == 'yes') {
@@ -116,7 +116,7 @@ switch ($action) {
                     }
                     echo '</td>'.LF.'</tr>'."\n";
                 }
-            endwhile;
+            }
             echo '</table>'."\n";
         }
         echo '</div>'."\n";
@@ -272,7 +272,7 @@ Diese werden schon jetzt vom Konto deines PCs 10.47.'.$pc['ip'].' ('.$pc['name']
             echo '<table>';
             $gcnt = 0;
             $sql = db_query('SELECT * FROM pcs WHERE owner='.mysql_escape_string($usr['id']).' ORDER BY points DESC;');
-            while ($x = mysql_fetch_assoc($sql)):
+            while ($x = mysql_fetch_assoc($sql)) {
                 if (isavailh('da', $x) != true) {
                     continue;
                 }
@@ -305,7 +305,7 @@ Diese werden schon jetzt vom Konto deines PCs 10.47.'.$pc['ip'].' ('.$pc['name']
                     $gcnt++;
                     echo '<tr><th>10.47.'.$x['ip'].' ('.$x['name'].', '.$x['points'].' Punkte)</th><td><input checked="checked" type="checkbox" name="pc'.$x['id'].'" value="1" /></td></tr>';
                 }
-            endwhile;
+            }
             echo '</table>'."\n";
             if ($gcnt > 0) {
                 echo '<p>W&auml;hlen: <select name="sellist" onchange="da_check(this)"><option value="all">Alle</option><option value="75">75%</option><option value="50">50%</option><option value="25">25%</option><option value="0">keine</option><option value="userdef">Anzahl:</option></select>
@@ -343,7 +343,7 @@ Diese werden schon jetzt vom Konto deines PCs 10.47.'.$pc['ip'].' ('.$pc['name']
         if (isset($a['id']) == true && $a['cluster'] == $clusterid) {
 
             $sql = db_query('SELECT * FROM pcs WHERE owner='.$usr['id'].';');
-            while ($xpc = mysql_fetch_assoc($sql)):
+            while ($xpc = mysql_fetch_assoc($sql)) {
                 if ($_POST['pc'.$xpc['id']] != 1) {
                     continue;
                 }
@@ -374,7 +374,7 @@ Diese werden schon jetzt vom Konto deines PCs 10.47.'.$pc['ip'].' ('.$pc['name']
                         $usr['name']
                     ).'\';'
                 );
-            endwhile;
+            }
 
             echo '<div class="ok"><h3>Angriff</h3>'.LF.'<p>Du bist dabei!</p>'.LF.'</div><br />
   <p><a href="distrattack.htn?page=list&amp;sid='.$sid.'">Weiter</a></p>';

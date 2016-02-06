@@ -575,14 +575,14 @@ function autosel(obj) { var i = (obj.name==\'pcip\' ? 1 : 0);
             $r = db_query(
                 'SELECT id,name,cm FROM users WHERE cluster=\''.mysql_escape_string($clusterid).'\' ORDER BY name ASC'
             );
-            while ($user = mysql_fetch_assoc($r)):
+            while ($user = mysql_fetch_assoc($r)) {
                 if ($user['cm'] == strftime('%d.%m.')) {
                     $user['cm'] = 'heute';
                 } elseif ($user['cm'] == strftime('%d.%m.', time() - 86400)) {
                     $user['cm'] = 'gestern';
                 }
                 echo '<tr>'.LF.'<td><a href="user.htn?page=info&amp;user='.$user['id'].'&amp;sid='.$sid.'">'.$user['name'].'</a></td><td>'.$user['cm'].'</td></tr>';
-            endwhile;
+            }
             echo '</table>'.LF.'</div>'.LF.'</div>'.LF;
 
             createlayout_bottom();
@@ -622,7 +622,7 @@ function autosel(obj) { var i = (obj.name==\'pcip\' ? 1 : 0);
                 'SELECT * FROM users WHERE cluster=\''.mysql_escape_string($clusterid).'\' ORDER BY name ASC'
             );
 
-            while ($udat = mysql_fetch_assoc($r)):
+            while ($udat = mysql_fetch_assoc($r)) {
                 $uix = $udat['id'];
                 if ($uix == $usrid) {
                     continue;
@@ -641,7 +641,7 @@ function autosel(obj) { var i = (obj.name==\'pcip\' ? 1 : 0);
                 echo '</select></td>'.LF.'<td>'.nicetime3(
                         $udat['login_time']
                     ).'</td>'.LF.'<td><input type="checkbox" value="yes" name="kick'.$uix.'" /></td></tr>';
-            endwhile;
+            }
 
             echo '<tr>
 <td colspan="5"><input type="submit" value="Speichern" /></td>
@@ -667,7 +667,7 @@ function autosel(obj) { var i = (obj.name==\'pcip\' ? 1 : 0);
                 ).'\' ORDER BY name ASC'
             );
 
-            while ($udat = mysql_fetch_assoc($r)):
+            while ($udat = mysql_fetch_assoc($r)) {
                 $uix = $udat['id'];
                 if ($uix == $usrid) {
                     continue;
@@ -694,7 +694,7 @@ function autosel(obj) { var i = (obj.name==\'pcip\' ? 1 : 0);
                             ).'.'.LF.$cluster['events'];
                     }
                 }
-            endwhile;
+            }
 
             $x = explode("\n", $cluster['events']);
             if (count($x) > 21) {
@@ -787,14 +787,14 @@ Ordner 3:<br />
     case 'delcluster':
         if ($_POST['delete'] == 'yes') {
             $r = db_query('SELECT id FROM users WHERE cluster=\''.mysql_escape_string($clusterid).'\';');
-            while ($data = mysql_fetch_assoc($r)):
+            while ($data = mysql_fetch_assoc($r)) {
                 addsysmsg(
                     $data['id'],
                     'Dein Cluster '.$cluster['code'].' wurde gel&ouml;scht! Das passierte durch [usr='.$usrid.']'.$usr['name'].'[/usr] ('.cscodetostring(
                         $usr['clusterstat']
                     ).')'
                 );
-            endwhile;
+            }
             deletecluster($usr['cluster']);
             db_query(
                 'INSERT INTO logs SET type=\'delcluster\', usr_id=\''.mysql_escape_string(
@@ -1100,7 +1100,7 @@ Ordner 3:<br />
                     $st
                 ).';'
             );
-            while ($member = mysql_fetch_assoc($r)):
+            while ($member = mysql_fetch_assoc($r)) {
                 if ($member !== false) {
                     $lli = $member['login_time'];
                     if ($lli >= time() - 24 * 60 * 60) {
@@ -1121,7 +1121,8 @@ Ordner 3:<br />
                         ).'</td>'.LF.'<td>'.$member['points'].'</td>'.LF.'<td>'.$online.'</td>'.LF.'<td>'.$lli.'</td>'.LF.'</tr>'."\n";
                 }
                 $lli = '';
-            endwhile;
+            }
+
             $short = htmlspecialchars($c['code']);
             echo '<div class="content" id="cluster">
 <h2>Cluster</h2>
@@ -1228,7 +1229,7 @@ Ordner 3:<br />
                     ).' AND time>='.mysql_escape_string($ts).' ORDER BY time DESC;'
                 );
 
-                while ($data = mysql_fetch_assoc($r)):
+                while ($data = mysql_fetch_assoc($r)) {
                     echo '<tr>'."\n";
 
                     echo '<td>'.nicetime2($data['time']).'</td>'."\n";
@@ -1283,7 +1284,7 @@ Ordner 3:<br />
                     echo '<td>'.$s.'</td>';
 
                     echo '</tr>';
-                endwhile;
+                }
 
                 echo '</table>';
             }
@@ -1464,7 +1465,7 @@ Ordner 3:<br />
                         $rest = $credits - $in;
                         if ($rest > 0) {
                             $fin = $rest;
-                            $text .= '<p>Von diesem Betrag werden noch '.$in.' Credits Geb&uuml;hren als Einfuhr nach $country2, dem Standort von 10.47.'.$recip['ip'].' abgezogen. '.$recip_usr['name'].' erh&auml;lt also noch <b>'.$rest.' Credits.</p>';
+                            $text .= '<p>Von diesem Betrag werden noch '.$in.' Credits Geb&uuml;hren als Einfuhr nach '.$country2.', dem Standort von 10.47.'.$recip['ip'].' abgezogen. '.$recip_usr['name'].' erh&auml;lt also noch <b>'.$rest.' Credits.</p>';
                         } else {
                             $text .= '<p>Da der Betrag sehr gering ist, werden keine Geb&uuml;hren erhoben. '.$recip_usr['name'].' erh&auml;lt <b>'.$credits.' Credits.</p>';
                             $fin = $credits;
@@ -1657,7 +1658,7 @@ hat, wirst du per System-Nachricht informiert.</b></p>
 <tr><th>Spieler</th><th>Punkte</th><th>Kommentar</th><th>Aufnehmen</th><th>Ablehnen</th><th>Nicht &auml;ndern</th></tr>';
 
             $r = db_query('SELECT * FROM cl_reqs WHERE cluster='.mysql_escape_string($clusterid).' AND dealed=\'no\'');
-            while ($data = mysql_fetch_assoc($r)):
+            while ($data = mysql_fetch_assoc($r)) {
                 $u = getuser($data['user']);
                 if ($u === false) {
                     db_query('DELETE FROM cl_reqs WHERE user='.mysql_escape_string($data['user']).';');
@@ -1669,7 +1670,7 @@ hat, wirst du per System-Nachricht informiert.</b></p>
                 echo '<td><input type="radio" name="u'.$u['id'].'" value="no"></td>';
                 echo '<td><input type="radio" name="u'.$u['id'].'" value="ignore" checked></td>';
                 echo '</tr>';
-            endwhile;
+            }
 
             echo '<tr><th colspan="6" align="right"><input type="submit" value=" &Uuml;bernehmen "></th></tr>
 </table></form>
@@ -1686,7 +1687,7 @@ hat, wirst du per System-Nachricht informiert.</b></p>
             $r = db_query('SELECT * FROM cl_reqs WHERE cluster='.mysql_escape_string($clusterid).' AND dealed=\'no\'');
             $delstr = '';
             $acstr = '';
-            while ($data = mysql_fetch_assoc($r)):
+            while ($data = mysql_fetch_assoc($r)) {
                 $u = getuser($data['user']);
                 if ($u === false) {
                     continue;
@@ -1705,7 +1706,7 @@ hat, wirst du per System-Nachricht informiert.</b></p>
                     );
                     $delstr .= 'user='.mysql_escape_string($u['id']).' OR ';
                 }
-            endwhile;
+            }
 
             if ($delstr != '') {
                 $delstr = substr($delstr, 0, strlen($delstr) - 4);
@@ -1810,11 +1811,11 @@ function conventlist($cid)
 #echo mysql_error();
     if (mysql_num_rows($r) > 0) {
         $s = '<table>'.LF.'<tr>'.LF.'<th>Cluster</th>'.LF.'<th>Vertrag</th>'.LF.'</tr>'."\n";
-        while ($pact = mysql_fetch_assoc($r)):
+        while ($pact = mysql_fetch_assoc($r)) {
             #$partner=getcluster($pact['partner']);
             $temp = cvcodetostring($pact['convent']);
             $s .= '<tr>'.LF.'<td><a href="cluster.htn?page=info&amp;sid='.$sid.'&amp;cluster='.$pact['id'].'">'.$pact['code'].'</a></td>'.LF.'<td>'.$temp.'</td>'.LF.'</tr>'."\n";
-        endwhile;
+        }
         $s .= '</table>';
     }
 

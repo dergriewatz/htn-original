@@ -134,7 +134,7 @@ switch ($action) {
 
         $da = false;
         $sql = db_query('SELECT * FROM pcs WHERE owner='.mysql_escape_string($usr['id']).';');
-        while ($x = mysql_fetch_assoc($sql)):
+        while ($x = mysql_fetch_assoc($sql)) {
             if ($x['points'] < 1024) {
                 processupgrades($x);
                 if ((int)@mysql_num_rows(
@@ -150,7 +150,7 @@ switch ($action) {
                     $da = true;
                 }
             }
-        endwhile;
+        }
         setuserval('da_avail', ($da == true ? 'yes' : 'no'));
 
         echo '<div class="content" id="overview">
@@ -582,7 +582,7 @@ switch ($action) {
             $tmppc = $pc;
             echo '<h3>Upgrade-Queue</h3><p><strong>Es sind '.$full.' von '.UPGRADE_QUEUE_LENGTH.' Slots belegt</strong></p>'."\n";
             echo '<table>'."\n";
-            while ($data = mysql_fetch_assoc($r)):
+            while ($data = mysql_fetch_assoc($r)) {
                 $item = $data['item'];
                 $newlv = itemnextlevel($item, $tmppc[$item]);
                 $s1 = formatitemlevel($item, $tmppc[$item]);
@@ -591,7 +591,7 @@ switch ($action) {
                 echo '<td>'.nicetime($data['end']).'</td>';
                 echo '<td><a href="game.htn?page=cancelupgrade&amp;upgrade='.$data['id'].'&amp;sid='.$sid.'">Abbrechen</a></td></tr>'."\n";
                 $tmppc[$item] = $newlv;
-            endwhile;
+            }
             echo '</table>'."\n";
             echo '<p>Wichtig: Das Geld von einem abgebrochenen Upgrade wird NICHT zur&uuml;ckerstattet, sondern ist verloren!</p>';
         }
@@ -721,10 +721,10 @@ switch ($action) {
             ).'\' ORDER BY start ASC;'
         );
         $cnt1 = mysql_num_rows($r1);
-        while ($data = mysql_fetch_assoc($r1)):
+        while ($data = mysql_fetch_assoc($r1)) {
             $item = $data['item'];
             $tmppc[$item] = itemnextlevel($item, $tmppc[$item]);
-        endwhile;
+        }
 
         if (isavailb($id, $tmppc) === true) {
             $inf = getiteminfo($id, $tmppc[$id]);
@@ -895,7 +895,7 @@ switch ($action) {
                 ).$ord.';'
             );
         }
-        while ($x = mysql_fetch_assoc($sql)):
+        while ($x = mysql_fetch_assoc($sql)) {
             #$list.=$x['id'].',';
             $number++;
             $country = GetCountry('id', $x['country']);
@@ -970,7 +970,7 @@ switch ($action) {
             }
             echo '<td class="hijack">'.$hijack.'<br>'.'Level '.$x['rh'].'</td></tr>';
 
-        endwhile;
+        }
 
 #$list=trim($list,',');
 #setuserval('pcs', $list);
@@ -1395,7 +1395,7 @@ location.href=\'../game.htn?mode=subnet&sid='.$sid.'&subnet=\'+s;
             mysql_data_seek($r, $start - 1);
         }
         $i = $start;
-        while ($data = mysql_fetch_assoc($r)):
+        while ($data = mysql_fetch_assoc($r)) {
             $i++;
             if ($i > $start + 64) {
                 break;
@@ -1431,7 +1431,7 @@ location.href=\'../game.htn?mode=subnet&sid='.$sid.'&subnet=\'+s;
 </tr>
 ';
 
-        endwhile;
+        }
 
         echo $plist."\n".'</table>'.LF.'</div>'.LF.'</div>'."\n";
         createlayout_bottom();
